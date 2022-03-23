@@ -23,7 +23,7 @@ Metacello new
 SpRetroDemoPlayer example.
 ```
 
-## Restrictions
+## Limitations
 - Only compatible with Pharo 8.
 - Sound and music functions are not supported.
 - Bitmap editor or Tile editor are not implemented.
