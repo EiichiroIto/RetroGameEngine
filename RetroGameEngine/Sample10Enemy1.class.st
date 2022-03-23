@@ -1,0 +1,37 @@
+Class {
+	#name : #Sample10Enemy1,
+	#superclass : #Sample10Object,
+	#instVars : [
+		'direction'
+	],
+	#category : #'RetroGameEngine-Samples'
+}
+
+{ #category : #api }
+Sample10Enemy1 >> draw: anApp [
+	anApp engine
+		blt: position
+		imageBank: 0
+		at: (anApp engine frameCount // 4 \\ 2 * 8) @ 24
+		extent:
+			(direction > 0
+				ifTrue: [ 8 ]
+				ifFalse: [ -8 ]) @ 8
+		color: anApp class transparentColor
+]
+
+{ #category : #api }
+Sample10Enemy1 >> init: anApp [
+	super init: anApp.
+	direction := -1
+]
+
+{ #category : #api }
+Sample10Enemy1 >> update: anApp [
+	delta := direction @ (delta y + 1 min: 3).
+	(direction < 0 and: [ anApp isWall: position + (-1 @ 4) ])
+		ifTrue: [ direction := 1 ]
+		ifFalse: [ (direction > 0 and: [ anApp isWall: position + (8 @ 4) ])
+				ifTrue: [ direction := -1 ] ].
+	position := anApp pushBack: position delta: delta
+]
