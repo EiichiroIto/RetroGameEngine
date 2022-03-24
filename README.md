@@ -23,9 +23,15 @@ Metacello new
 SpRetroDemoPlayer example.
 ```
 
+Have fun!
+
 ## Limitations
 - Only compatible with Pharo 8.
 - Sound and music functions are not supported.
-- Bitmap Editor and Tile Editor are not implemented.
+- Image Editor and Tilemap Editor are not implemented.
 
-Have fun!
+## ToDo
+- Implement Image Editor by RetroGameEngine itself.
+- Implement Tilemap Editor by RetroGameEngine itself.
+- Support for Pharo 10.
+- Support for sound and music.
