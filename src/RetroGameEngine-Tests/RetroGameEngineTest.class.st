@@ -30,12 +30,12 @@ RetroGameEngineTest >> testCeil [
 ]
 
 { #category : #test }
-RetroGameEngineTest >> testCircleFrameRColor [
+RetroGameEngineTest >> testCircleFrameRadiusColor [
 	| e |
 	e := self newEngine.
 	e extent: 7 @ 7.
 	e init.
-	e circleFrame: 3 @ 3 r: 3 color: 5.
+	e circleFrame: 3 @ 3 radius: 3 color: 5.
 	self
 		assertCollection: e screen array
 		equals: #[
@@ -50,12 +50,12 @@ RetroGameEngineTest >> testCircleFrameRColor [
 ]
 
 { #category : #test }
-RetroGameEngineTest >> testCircleRColor [
+RetroGameEngineTest >> testCircleRadiusColor [
 	| e |
 	e := self newEngine.
 	e extent: 7 @ 7.
 	e init.
-	e circle: 3 @ 3 r: 3 color: 5.
+	e circle: 3 @ 3 radius: 3 color: 5.
 	self
 		assertCollection: e screen array
 		equals: #[

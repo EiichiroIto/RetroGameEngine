@@ -30,8 +30,8 @@ Sample09Blast class >> startRadius [
 { #category : #api }
 Sample09Blast >> draw: anApp [
 	anApp engine
-		circle: position r: radius color: self class colorIn;
-		circleFrame: position r: radius color: self class colorOut
+		circle: position radius: radius color: self class colorIn;
+		circleFrame: position radius: radius color: self class colorOut
 ]
 
 { #category : #api }

@@ -135,7 +135,7 @@ CameraTest >> drawTestCircle: aPoint [
 	engine text: 'circ(x,y,r,col)' at: aPoint color: 7.
 	p := aPoint + (4 @ 15).
 	0 to: 7 do:
-		[ :each | engine circle: p + ((each * 8) @ 0) r: each color: each + 8 ]
+		[ :each | engine circle: p + ((each * 8) @ 0) radius: each color: each + 8 ]
 ]
 
 { #category : #private }
@@ -144,7 +144,7 @@ CameraTest >> drawTestCircleFrame: aPoint [
 	engine text: 'circb(x,y,r,col)' at: aPoint color: 7.
 	p := aPoint + (4 @ 15).
 	0 to: 7 do:
-		[ :each | engine circleFrame: p + ((each * 8) @ 0) r: each color: each + 8 ]
+		[ :each | engine circleFrame: p + ((each * 8) @ 0) radius: each color: each + 8 ]
 ]
 
 { #category : #private }

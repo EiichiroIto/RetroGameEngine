@@ -29,7 +29,7 @@ Sample06Bubble >> containsPoint: aPoint [
 Sample06Bubble >> draw: anApp [
 	anApp engine
 		circle: position truncated
-		r: radius truncated
+		radius: radius truncated
 		color: color
 ]
 

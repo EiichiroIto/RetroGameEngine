@@ -22,16 +22,36 @@ RetroGameMorph >> app: anObject [
 
 { #category : #drawing }
 RetroGameMorph >> drawOn: aCanvas [
-	| form tmp |
+	| info |
 	super drawOn: aCanvas.
-	app ifNil: [ ^ self ].
-	form := app engine form.
-	form ifNil: [ ^ self ].
-	tmp := form extent.
-	form := form scaledToSize: self extent.
-	magnify := form extent / tmp.
-	offset := (self extent - form extent) // 2.
-	aCanvas drawImage: form at: offset + self topLeft
+	app ifNil: [ ^ aCanvas drawString: 'app nil' at: self topLeft ].
+	info := app engine displayInfo.
+	info first
+		ifNil: [ ^ aCanvas drawString: 'screen nil' at: self topLeft ].
+	magnify := (self extent // info second) min.
+	magnify = 0
+		ifTrue: [ ^ aCanvas drawString: 'too small extent' at: self topLeft ].
+	offset := (self extent - (info second * magnify)) // 2.
+	self drawScreen: info on: aCanvas
+]
+
+{ #category : #drawing }
+RetroGameMorph >> drawScreen: anArray on: aCanvas [
+	| array extent colors x0 x y c cell rect |
+	array := anArray first.
+	extent := anArray second.
+	colors := anArray third.
+	x := x0 := self left + offset x.
+	y := self top + offset y.
+	cell := 1 @ 1 * magnify.
+	1 to: array size do: [ :index | 
+		c := array at: index.
+		rect := Rectangle origin: x @ y extent: cell.
+		aCanvas fillRectangle: rect color: (colors at: c + 1).
+		x := x + magnify.
+		index \\ extent x = 0
+			ifTrue: [ x := x0.
+				y := y + magnify ] ]
 ]
 
 { #category : #'event handling' }

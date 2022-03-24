@@ -104,7 +104,7 @@ RetroGameEngine >> ceil: aNumber [
 ]
 
 { #category : #'screen api' }
-RetroGameEngine >> circle: aPoint r: anInteger color: anInteger3 [
+RetroGameEngine >> circle: aPoint radius: anInteger color: anInteger3 [
 	| points max p |
 	anInteger < 1
 		ifTrue: [ ^ self pixelAt: aPoint put: anInteger3 ].
@@ -129,7 +129,7 @@ RetroGameEngine >> circle: aPoint r: anInteger color: anInteger3 [
 ]
 
 { #category : #'screen api' }
-RetroGameEngine >> circleFrame: aPoint r: anInteger color: anInteger3 [
+RetroGameEngine >> circleFrame: aPoint radius: anInteger color: anInteger3 [
 	| points |
 	anInteger < 1
 		ifTrue: [ ^ self pixelAt: aPoint put: anInteger3 ].	points := OrderedCollection new.
@@ -167,6 +167,11 @@ RetroGameEngine >> colors: anObject [
 { #category : #api }
 RetroGameEngine >> cos: aNumber [
 	^ aNumber degreesToRadians cos
+]
+
+{ #category : #api }
+RetroGameEngine >> displayInfo [
+	^ Array with: screen array with: screen extent with: screen colors
 ]
 
 { #category : #'screen api' }

@@ -193,6 +193,7 @@ SpRetroDemoPlayer >> setupMenuBar [
 
 { #category : #private }
 SpRetroDemoPlayer >> setupPlayerMorph [
+	playerPane morph color: Smalltalk ui theme backgroundColor.
 	playerPane morph whenStepDo: [ self loop ]
 ]
 
