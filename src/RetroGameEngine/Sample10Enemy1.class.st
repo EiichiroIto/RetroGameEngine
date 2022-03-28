@@ -8,16 +8,16 @@ Class {
 }
 
 { #category : #api }
-Sample10Enemy1 >> draw: anApp [
-	anApp engine
+Sample10Enemy1 >> draw [
+	app engine
 		blt: position
 		imageBank: 0
-		at: (anApp engine frameCount // 4 \\ 2 * 8) @ 24
+		at: (app engine frameCount // 4 \\ 2 * 8) @ 24
 		extent:
 			(direction > 0
 				ifTrue: [ 8 ]
 				ifFalse: [ -8 ]) @ 8
-		color: anApp class transparentColor
+		transparentColor: app class transparentColor
 ]
 
 { #category : #api }
@@ -27,11 +27,11 @@ Sample10Enemy1 >> init: anApp [
 ]
 
 { #category : #api }
-Sample10Enemy1 >> update: anApp [
+Sample10Enemy1 >> update [
 	delta := direction @ (delta y + 1 min: 3).
-	(direction < 0 and: [ anApp isWall: position + (-1 @ 4) ])
+	(direction < 0 and: [ app isWall: position + (-1 @ 4) ])
 		ifTrue: [ direction := 1 ]
-		ifFalse: [ (direction > 0 and: [ anApp isWall: position + (8 @ 4) ])
+		ifFalse: [ (direction > 0 and: [ app isWall: position + (8 @ 4) ])
 				ifTrue: [ direction := -1 ] ].
-	position := anApp pushBack: position delta: delta
+	position := app pushBack: position delta: delta
 ]

@@ -37,20 +37,20 @@ Sample09Enemy >> direction: anObject [
 ]
 
 { #category : #api }
-Sample09Enemy >> draw: anApp [
-	anApp engine
+Sample09Enemy >> draw [
+	app engine
 		blt: position
 		imageBank: 0
 		at: 8 @ 0
 		extent: self class extent * (direction @ 1)
-		color: 0
+		transparentColor: 0
 ]
 
 { #category : #api }
 Sample09Enemy >> init: anApp [
+	super init: anApp.
 	direction := 1.
-	timerOffset := anApp engine randomFrom: 0 to: 59.
-	isAlive := true
+	timerOffset := anApp engine randomFrom: 0 to: 59
 ]
 
 { #category : #accessing }
@@ -64,17 +64,17 @@ Sample09Enemy >> timerOffset: anObject [
 ]
 
 { #category : #api }
-Sample09Enemy >> update: anApp [
+Sample09Enemy >> update [
 	| x y |
 	x := position x.
 	y := position y.
-	(anApp engine frameCount + timerOffset) \\ 60 < 30
+	(app engine frameCount + timerOffset) \\ 60 < 30
 		ifTrue: [ x := x + self class speed.
 			direction := 1 ]
 		ifFalse: [ x := x - self class speed.
 			direction := -1 ].
 	y := y + self class speed.
-	y > (anApp engine height - 1)
+	y > (app engine height - 1)
 		ifTrue: [ isAlive := false ].
 	position := x @ y
 ]

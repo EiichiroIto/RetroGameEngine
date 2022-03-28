@@ -2,6 +2,7 @@ Class {
 	#name : #DanmakuObject,
 	#superclass : #Object,
 	#instVars : [
+		'app',
 		'position',
 		'extent',
 		'isAlive'
@@ -9,8 +10,18 @@ Class {
 	#category : #'RetroGameEngine-Samples'
 }
 
+{ #category : #accessing }
+DanmakuObject >> app [
+	^ app
+]
+
+{ #category : #accessing }
+DanmakuObject >> app: anObject [
+	app := anObject
+]
+
 { #category : #api }
-DanmakuObject >> draw: anApp [
+DanmakuObject >> draw [
 	""
 ]
 
@@ -26,6 +37,7 @@ DanmakuObject >> extent: anObject [
 
 { #category : #api }
 DanmakuObject >> init: anApp [
+	app := anApp.
 	isAlive := true
 ]
 
@@ -50,6 +62,6 @@ DanmakuObject >> position: anObject [
 ]
 
 { #category : #api }
-DanmakuObject >> update: anApp [
+DanmakuObject >> update [
 	""
 ]

@@ -295,13 +295,13 @@ Sample02 >> draw [
 		imageBank: 0
 		at: 0 @ 88
 		extent: 160 @ 32
-		color: nil.
+		transparentColor: nil.
 	engine
 		blt: 0 @ 88
 		imageBank: 0
 		at: 0 @ 64
 		extent: 160 @ 24
-		color: 12.
+		transparentColor: 12.
 	offset := engine frameCount \\ 160.
 	0 to: 1 do: [ :each | 
 		engine
@@ -309,7 +309,7 @@ Sample02 >> draw [
 			imageBank: 0
 			at: 0 @ 48
 			extent: 160 @ 16
-			color: 12 ].
+			transparentColor: 12 ].
 	offset := engine frameCount // 16 \\ 160.
 	0 to: 1 do: [ :i | 
 		farCloud
@@ -319,7 +319,7 @@ Sample02 >> draw [
 					imageBank: 0
 					at: 64 @ 32
 					extent: 32 @ 8
-					color: 12 ] ].
+					transparentColor: 12 ] ].
 	offset := engine frameCount // 8 \\ 160.
 	0 to: 1 do: [ :i | 
 		nearCloud
@@ -329,7 +329,7 @@ Sample02 >> draw [
 					imageBank: 0
 					at: 0 @ 32
 					extent: 56 @ 8
-					color: 12 ] ].
+					transparentColor: 12 ] ].
 	floor
 		do: [ :each | 
 			engine
@@ -337,7 +337,7 @@ Sample02 >> draw [
 				imageBank: 0
 				at: 0 @ 16
 				extent: 40 @ 8
-				color: 12 ].
+				transparentColor: 12 ].
 	fruit
 		do: [ :each | 
 			each fourth
@@ -346,7 +346,7 @@ Sample02 >> draw [
 						imageBank: 0
 						at: (32 + (each third * 16)) @ 0
 						extent: 16 @ 16
-						color: 12 ] ].
+						transparentColor: 12 ] ].
 	engine
 		blt: playerPosition
 		imageBank: 0
@@ -355,7 +355,7 @@ Sample02 >> draw [
 				ifTrue: [ 16 ]
 				ifFalse: [ 0 ]) @ 0
 		extent: 16 @ 16
-		color: 12.
+		transparentColor: 12.
 	s := 'SCORE ' , score asString.
 	engine text: s at: 5 @ 4 color: 1.
 	engine text: s at: 4 @ 4 color: 7

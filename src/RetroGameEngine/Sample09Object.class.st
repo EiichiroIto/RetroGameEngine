@@ -2,6 +2,7 @@ Class {
 	#name : #Sample09Object,
 	#superclass : #Object,
 	#instVars : [
+		'app',
 		'position',
 		'isAlive'
 	],
@@ -14,8 +15,24 @@ Sample09Object class >> extent [
 ]
 
 { #category : #accessing }
+Sample09Object >> app [
+	^ app
+]
+
+{ #category : #accessing }
+Sample09Object >> app: anObject [
+	app := anObject
+]
+
+{ #category : #accessing }
 Sample09Object >> height [
 	^ self class extent y
+]
+
+{ #category : #api }
+Sample09Object >> init: anApp [
+	app := anApp.
+	isAlive := true
 ]
 
 { #category : #accessing }

@@ -15,21 +15,16 @@ Sample09Player class >> speed [
 ]
 
 { #category : #api }
-Sample09Player >> draw: anApp [
-	anApp engine blt: position imageBank: 0 at: 0 @ 0 extent: self class extent color: 0
+Sample09Player >> draw [
+	app engine blt: position imageBank: 0 at: 0 @ 0 extent: self class extent transparentColor: 0
 ]
 
 { #category : #api }
-Sample09Player >> init: anApp [
-	isAlive := true
-]
-
-{ #category : #api }
-Sample09Player >> update: anApp [
+Sample09Player >> update [
 	| x y |
 	x := position x.
 	y := position y.
-	anApp engine
+	app engine
 		in: [ :engine | 
 			(engine isPressing: RetroGameInputs left)
 				ifTrue: [ x := x - self class speed ].

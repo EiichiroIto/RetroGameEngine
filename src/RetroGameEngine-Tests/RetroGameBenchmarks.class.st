@@ -40,7 +40,7 @@ RetroGameBenchmarks >> test1 [
 		destExtent: dest extent;
 		destPoint: 0 @ 0;
 		clipExtent: 100 @ 160;
-		copyBitsTranslucent: nil
+		copyBits
 ]
 
 { #category : #examples }

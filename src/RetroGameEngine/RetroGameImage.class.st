@@ -158,7 +158,7 @@ RetroGameImage >> buildImageOfTileMap: aTileMap at: aPoint extent: aPoint4 [
 				destExtent: dest extent;
 				destPoint: dx @ dy * 8;
 				clipExtent: 8 @ 8;
-				copyBitsTranslucent: nil ] ].
+				copyBits ] ].
 	^ dest
 ]
 
@@ -180,7 +180,8 @@ RetroGameImage >> character: aCharacter at: aPoint color: anInteger [
 		sourceExtent: self characterExtent;
 		clipExtent: self characterExtent;
 		sourcePoint: 0 @ 0;
-		copyBitsTranslucent: trColor
+		transparentColor: trColor;
+		copyBits
 ]
 
 { #category : #private }
@@ -220,6 +221,26 @@ RetroGameImage >> containsPoint: aPoint [
 ]
 
 { #category : #api }
+RetroGameImage >> ellipse: aPoint extent: aPoint2 color: anInteger [
+	| points bothEnds |
+	points := self ellipsePointsExtent: aPoint2.
+	bothEnds := self bothEndsOf: points height: aPoint2 y.
+	bothEnds
+		withIndexDo: [ :each :index | 
+			self
+				hLine: aPoint truncated + (each first @ (index - 1))
+				length: each second - each first + 1
+				color: anInteger ]
+]
+
+{ #category : #api }
+RetroGameImage >> ellipseFrame: aPoint extent: aPoint2 color: anInteger [
+	| points |
+	points := self ellipsePointsExtent: aPoint2.
+	points do: [ :each | self pixelAt: aPoint + each put: anInteger ]
+]
+
+{ #category : #private }
 RetroGameImage >> ellipsePointsExtent: aPoint2 [
 	| list pos offset points |
 	offset := 1 - (aPoint2 \\ 2).

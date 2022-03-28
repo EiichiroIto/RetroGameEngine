@@ -18,8 +18,8 @@ DanmakuBullet >> direction: anObject [
 ]
 
 { #category : #api }
-DanmakuBullet >> draw: anApp [
-	anApp engine rect: position extent: extent color: 8
+DanmakuBullet >> draw [
+	app engine rect: position extent: extent color: 8
 ]
 
 { #category : #api }
@@ -29,12 +29,12 @@ DanmakuBullet >> init: anApp [
 ]
 
 { #category : #api }
-DanmakuBullet >> update: anApp [
+DanmakuBullet >> update [
 	| delta |
 	delta := Point r: 5 degrees: direction.
 	position := position + delta.
-	(anApp engine screen containsPoint: position)
+	(app engine screen containsPoint: position)
 		ifFalse: [ isAlive := false ].
-	(position distanceTo: anApp player position) < 3
-		ifTrue: [ anApp gameOver ]
+	(position distanceTo: app player position) < 3
+		ifTrue: [ app gameOver ]
 ]

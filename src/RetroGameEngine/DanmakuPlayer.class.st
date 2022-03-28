@@ -5,8 +5,8 @@ Class {
 }
 
 { #category : #api }
-DanmakuPlayer >> draw: anApp [
-	anApp engine rect: position + (1 @ 1) extent: extent color: 5
+DanmakuPlayer >> draw [
+	app engine rect: position + (1 @ 1) extent: extent color: 5
 ]
 
 { #category : #api }
@@ -16,10 +16,10 @@ DanmakuPlayer >> init: anApp [
 ]
 
 { #category : #api }
-DanmakuPlayer >> update: anApp [
+DanmakuPlayer >> update [
 	| step |
 	step := 3.
-	anApp engine
+	app engine
 		in: [ :engine | 
 			((engine isPressing: RetroGameInputs left) and: [ position x >= step ])
 				ifTrue: [ position := (position x - step) @ position y ].

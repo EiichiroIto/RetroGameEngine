@@ -40,7 +40,7 @@ CameraTest class >> tileset24x32 [
 
 { #category : #accessing }
 CameraTest class >> title [
-	^ '99 Camera Demo'
+	^ 'Camera Demo'
 ]
 
 { #category : #api }
@@ -76,31 +76,31 @@ CameraTest >> drawTestBlt: aPoint [
 		imageBank: 0
 		at: 0 @ 0
 		extent: 16 @ 16
-		color: nil.
+		transparentColor: nil.
 	engine
 		blt: (pos x + offset + 19) @ pos y
 		imageBank: 0
 		at: 0 @ 0
 		extent: 16 @ 16
-		color: 13.
+		transparentColor: 13.
 	engine
 		blt: (pos x + 38) @ pos y
 		imageBank: 0
 		at: 0 @ 0
 		extent: -16 @ 16
-		color: 13.
+		transparentColor: 13.
 	engine
 		blt: (pos x + 57) @ pos y
 		imageBank: 0
 		at: 0 @ 0
 		extent: 16 @ -16
-		color: 13.
+		transparentColor: 13.
 	engine
 		blt: (pos x + 76) @ pos y
 		imageBank: 0
 		at: 0 @ 0
 		extent: -16 @ -16
-		color: 13
+		transparentColor: 13
 ]
 
 { #category : #private }
@@ -115,7 +115,7 @@ CameraTest >> drawTestBltTileMap: aPoint [
 		tileMap: 0
 		at: 0 @ 0
 		extent: 88 @ 16
-		color: 2
+		transparentColor: 2
 ]
 
 { #category : #private }

@@ -9,7 +9,8 @@ Class {
 		'destPoint',
 		'sourcePoint',
 		'clipExtent',
-		'destMask'
+		'destMask',
+		'transparentColor'
 	],
 	#category : #'RetroGameEngine-Core'
 }
@@ -72,7 +73,22 @@ RetroGameBitBlt >> clipRange [
 ]
 
 { #category : #api }
-RetroGameBitBlt >> copyBitsHReverse: anInteger [
+RetroGameBitBlt >> copyBits [
+	| flip |
+	flip := clipExtent sign.
+	self clipRange.
+	clipExtent ifNil: [ ^ self ].
+	flip x < 0
+		ifTrue: [ flip y < 0
+				ifTrue: [ self copyBitsHVReverse ]
+				ifFalse: [ self copyBitsHReverse ] ]
+		ifFalse: [ flip y < 0
+				ifTrue: [ self copyBitsVReverse ]
+				ifFalse: [ self copyBitsNormal ] ]
+]
+
+{ #category : #api }
+RetroGameBitBlt >> copyBitsHReverse [
 	| c destIndex sourceIndex |
 	sourceIndex := self sourceIndexOf: sourcePoint.
 	destIndex := self destIndexOf: destPoint.
@@ -80,14 +96,14 @@ RetroGameBitBlt >> copyBitsHReverse: anInteger [
 		timesRepeat: [ 1 to: clipExtent x do: [ :x | 
 				c := sourceArray at: sourceIndex + clipExtent x - x.
 				((destMask isNil or: [ destMask at: destIndex + x - 1 ])
-					and: [ c ~= anInteger ])
+					and: [ c ~= transparentColor ])
 					ifTrue: [ destArray at: destIndex + x - 1 put: c ] ].
 			sourceIndex := sourceIndex + sourceExtent x.
 			destIndex := destIndex + destExtent x ]
 ]
 
 { #category : #api }
-RetroGameBitBlt >> copyBitsHVReverse: anInteger [
+RetroGameBitBlt >> copyBitsHVReverse [
 	| c destIndex sourceIndex |
 	sourceIndex := self
 		sourceIndexOf: sourcePoint + (0 @ (clipExtent y - 1)).
@@ -96,7 +112,7 @@ RetroGameBitBlt >> copyBitsHVReverse: anInteger [
 		timesRepeat: [ 1 to: clipExtent x do: [ :x | 
 				c := sourceArray at: sourceIndex + clipExtent x - x.
 				((destMask isNil or: [ destMask at: destIndex + x - 1 ])
-					and: [ c ~= anInteger ])
+					and: [ c ~= transparentColor ])
 					ifTrue: [ destArray at: destIndex + x - 1 put: c ].
 				 ].
 			sourceIndex := sourceIndex - sourceExtent x.
@@ -104,7 +120,7 @@ RetroGameBitBlt >> copyBitsHVReverse: anInteger [
 ]
 
 { #category : #api }
-RetroGameBitBlt >> copyBitsNormal: anInteger [
+RetroGameBitBlt >> copyBitsNormal [
 	| c destIndex sourceIndex |
 	sourceIndex := self sourceIndexOf: sourcePoint.
 	destIndex := self destIndexOf: destPoint.
@@ -112,36 +128,21 @@ RetroGameBitBlt >> copyBitsNormal: anInteger [
 		ifNil: [ 1 to: clipExtent y do: [ :y | 
 				0 to: clipExtent x - 1 do: [ :index | 
 					c := sourceArray at: sourceIndex + index.
-					c = anInteger
+					c = transparentColor
 						ifFalse: [ destArray at: destIndex + index put: c ] ].
 				sourceIndex := sourceIndex + sourceExtent x.
 				destIndex := destIndex + destExtent x ] ]
 		ifNotNil: [ 1 to: clipExtent y do: [ :y | 
 				0 to: clipExtent x - 1 do: [ :index | 
 					c := sourceArray at: sourceIndex + index.
-					((destMask at: destIndex + index) and: [ c ~= anInteger ])
+					((destMask at: destIndex + index) and: [ c ~= transparentColor ])
 						ifTrue: [ destArray at: destIndex + index put: c ] ].
 				sourceIndex := sourceIndex + sourceExtent x.
 				destIndex := destIndex + destExtent x ] ]
 ]
 
 { #category : #api }
-RetroGameBitBlt >> copyBitsTranslucent: anInteger [
-	| flip |
-	flip := clipExtent sign.
-	self clipRange.
-	clipExtent ifNil: [ ^ self ].
-	flip x < 0
-		ifTrue: [ flip y < 0
-				ifTrue: [ self copyBitsHVReverse: anInteger ]
-				ifFalse: [ self copyBitsHReverse: anInteger ] ]
-		ifFalse: [ flip y < 0
-				ifTrue: [ self copyBitsVReverse: anInteger ]
-				ifFalse: [ self copyBitsNormal: anInteger ] ]
-]
-
-{ #category : #api }
-RetroGameBitBlt >> copyBitsVReverse: anInteger [
+RetroGameBitBlt >> copyBitsVReverse [
 	| c destIndex sourceIndex |
 	sourceIndex := self
 		sourceIndexOf: sourcePoint + (0 @ (clipExtent y - 1)).
@@ -150,7 +151,7 @@ RetroGameBitBlt >> copyBitsVReverse: anInteger [
 		timesRepeat: [ clipExtent x
 				timesRepeat: [ c := sourceArray at: sourceIndex.
 				((destMask isNil or: [ destMask at: destIndex ])
-					and: [ c ~= anInteger ])
+					and: [ c ~= transparentColor ])
 						ifTrue: [ destArray at: destIndex put: c ].
 					sourceIndex := sourceIndex + 1.
 					destIndex := destIndex + 1 ].
@@ -236,4 +237,14 @@ RetroGameBitBlt >> sourcePoint [
 { #category : #accessing }
 RetroGameBitBlt >> sourcePoint: anObject [
 	sourcePoint := anObject
+]
+
+{ #category : #accessing }
+RetroGameBitBlt >> transparentColor [
+	^ transparentColor
+]
+
+{ #category : #accessing }
+RetroGameBitBlt >> transparentColor: anObject [
+	transparentColor := anObject
 ]

@@ -20,17 +20,12 @@ Sample09Bullet class >> speed [
 ]
 
 { #category : #api }
-Sample09Bullet >> draw: anApp [
-	anApp engine rect: position extent: self class extent color: self class color
+Sample09Bullet >> draw [
+	app engine rect: position extent: self class extent color: self class color
 ]
 
 { #category : #api }
-Sample09Bullet >> init: anApp [
-	isAlive := true
-]
-
-{ #category : #api }
-Sample09Bullet >> update: anApp [
+Sample09Bullet >> update [
 	position := position x @ (position y - self class speed).
 	position y + self height - 1 < 0
 		ifTrue: [ isAlive := false ]

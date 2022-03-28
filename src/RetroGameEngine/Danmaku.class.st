@@ -16,7 +16,7 @@ Class {
 
 { #category : #accessing }
 Danmaku class >> title [
-	^ '98 Danmaku'
+	^ 'Danmaku Game'
 ]
 
 { #category : #api }
@@ -39,10 +39,10 @@ Danmaku >> draw [
 	engine cls: 0.
 	engine text: level asString at: 10 @ 10 color: 7.
 	player isAlive
-		ifTrue: [ player draw: self ]
+		ifTrue: [ player draw ]
 		ifFalse: [ engine text: 'Game Over' at: 50 @ 50 color: 7 ].
-	generators do: [ :each | each draw: self ].
-	bullets do: [ :each | each draw: self ]
+	generators do: #draw.
+	bullets do: #draw
 ]
 
 { #category : #private }
@@ -128,10 +128,10 @@ Danmaku >> player: anObject [
 Danmaku >> update [
 	player isAlive
 		ifFalse: [ ^ self ].
-	player update: self.
+	player update.
 	self makeGenerator.
-	generators do: [ :each | each update: self ].
-	bullets do: [ :each | each update: self ].
+	generators do: #update.
+	bullets do: #update.
 	generators := generators select: #isAlive.
 	bullets := bullets select: #isAlive
 ]

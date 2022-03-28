@@ -28,20 +28,20 @@ Sample09Blast class >> startRadius [
 ]
 
 { #category : #api }
-Sample09Blast >> draw: anApp [
-	anApp engine
+Sample09Blast >> draw [
+	app engine
 		circle: position radius: radius color: self class colorIn;
 		circleFrame: position radius: radius color: self class colorOut
 ]
 
 { #category : #api }
 Sample09Blast >> init: anApp [
-	radius := self class startRadius.
-	isAlive := true
+	super init: anApp.
+	radius := self class startRadius
 ]
 
 { #category : #api }
-Sample09Blast >> update: anApp [
+Sample09Blast >> update [
 	radius := radius + 1.
 	radius > self class endRadius
 		ifTrue: [ isAlive := false ]

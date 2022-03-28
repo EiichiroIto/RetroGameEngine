@@ -8,13 +8,13 @@ Class {
 }
 
 { #category : #api }
-Sample10Enemy3 >> draw: anApp [
-	anApp engine
+Sample10Enemy3 >> draw [
+	app engine
 		blt: position
 		imageBank: 0
-		at: (anApp engine frameCount // 8 \\ 2 * 8) @ 32
+		at: (app engine frameCount // 8 \\ 2 * 8) @ 32
 		extent: 8 @ 8
-		color: anApp class transparentColor
+		transparentColor: app class transparentColor
 ]
 
 { #category : #api }
@@ -26,23 +26,24 @@ Sample10Enemy3 >> init: anApp [
 { #category : #private }
 Sample10Enemy3 >> newBullet [
 	^ Sample10Bullet new
+		init: app;
+		yourself
 ]
 
 { #category : #api }
-Sample10Enemy3 >> update: anApp [
+Sample10Enemy3 >> update [
 	| sqDist dist d |
 	timeToFire := timeToFire - 1.
 	timeToFire > 0
 		ifTrue: [ ^ self ].
-	d := anApp player position - position.
+	d := app player position - position.
 	sqDist := d dotProduct: d.
 	sqDist >= (60 ** 2)
 		ifTrue: [ ^ self ].
-	dist := anApp engine sqrt: sqDist.
-	anApp
+	dist := app engine sqrt: sqDist.
+	app
 		addEnemy:
 			(self newBullet
-				init: self;
 				position: position;
 				delta: d / dist;
 				yourself).

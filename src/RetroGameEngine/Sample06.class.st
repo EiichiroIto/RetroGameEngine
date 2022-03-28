@@ -91,7 +91,7 @@ Sample06 >> checkBubbleClicked [
 Sample06 >> checkBubblesCollision [
 	bubbles copy
 		reverseWithIndexDo: [ :each :index | 
-			each update: engine.
+			each update.
 			(self checkBubble: each collisionAt: index)
 				ifTrue: [ bubbles remove: each ifAbsent: [  ] ] ]
 ]
@@ -99,7 +99,7 @@ Sample06 >> checkBubblesCollision [
 { #category : #api }
 Sample06 >> draw [
 	engine cls: 0.
-	bubbles do: [ :each | each draw: self ].
+	bubbles do: #draw.
 	(isExploded not and: [ engine frameCount \\ 20 < 10 ])
 		ifTrue: [ engine
 				text: 'CLICK ON BUBBLE'

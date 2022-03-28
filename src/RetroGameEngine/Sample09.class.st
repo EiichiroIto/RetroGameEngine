@@ -56,7 +56,7 @@ Sample09 class >> title [
 { #category : #api }
 Sample09 >> draw [
 	engine cls: 0.
-	background draw: self.
+	background draw.
 	scene = self class sceneTitle
 		ifTrue: [ self drawTitleScene ]
 		ifFalse: [ scene = self class scenePlay
@@ -68,19 +68,19 @@ Sample09 >> draw [
 
 { #category : #private }
 Sample09 >> drawGameOverScene [
-	bullets do: [ :each | each draw: self ].
-	enemies do: [ :each | each draw: self ].
-	blasts do: [ :each | each draw: self ].
+	bullets do: #draw.
+	enemies do: #draw.
+	blasts do: #draw.
 	engine text: 'GAME OVER' at: 43 @ 66 color: 8.
 	engine text: '- PRESS ENTER -' at: 31 @ 126 color: 13
 ]
 
 { #category : #private }
 Sample09 >> drawPlayScene [
-	player draw: self.
-	bullets do: [ :each | each draw: self ].
-	enemies do: [ :each | each draw: self ].
-	blasts do: [ :each | each draw: self ]
+	player draw.
+	bullets do: #draw.
+	enemies do: #draw.
+	blasts do: #draw
 ]
 
 { #category : #private }
@@ -181,7 +181,7 @@ Sample09 >> reset [
 Sample09 >> update [
 	(engine isPressing: (RetroGameInputs key: $Q))
 		ifTrue: [ self quit ].
-	background update: self.
+	background update.
 	scene = self class sceneTitle
 		ifTrue: [ self updateTitleScene ]
 		ifFalse: [ scene = self class scenePlay
@@ -192,9 +192,9 @@ Sample09 >> update [
 
 { #category : #private }
 Sample09 >> updateGameOverScene [
-	bullets do: [ :each | each update: self ].
-	enemies do: [ :each | each update: self ].
-	blasts do: [ :each | each update: self ].
+	bullets do: #update.
+	enemies do: #update.
+	blasts do: #update.
 	bullets := bullets select: #isAlive.
 	enemies := enemies select: #isAlive.
 	blasts := blasts select: #isAlive.
@@ -225,12 +225,12 @@ Sample09 >> updatePlayScene [
 					blasts
 						add: (self newBlastAt: player position extent: Sample09Player extent).
 					scene := self class sceneGameOver ] ].
-	player update: self.
+	player update.
 	(engine isPressed: RetroGameInputs space)
 		ifTrue: [ bullets add: (self newBulletAt: player position) ].
-	bullets do: [ :each | each update: self ].
-	enemies do: [ :each | each update: self ].
-	blasts do: [ :each | each update: self ].
+	bullets do: #update.
+	enemies do: #update.
+	blasts do: #update.
 	bullets := bullets select: #isAlive.
 	enemies := enemies select: #isAlive.
 	blasts := blasts select: #isAlive

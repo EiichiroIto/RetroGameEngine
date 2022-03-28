@@ -8,17 +8,17 @@ Class {
 }
 
 { #category : #api }
-DanmakuGenerator >> draw: anApp [
-	anApp engine circleFrame: position radius: radius color: 6
+DanmakuGenerator >> draw [
+	app engine circleFrame: position radius: radius color: 6
 ]
 
 { #category : #private }
-DanmakuGenerator >> fire: anApp [
-	anApp
+DanmakuGenerator >> fire [
+	app
 		addBullet:
-			((self newBullet: anApp)
+			((self newBullet)
 				position: position;
-				direction: (anApp player position - position) degrees;
+				direction: (app player position - position) degrees;
 				yourself)
 ]
 
@@ -29,9 +29,9 @@ DanmakuGenerator >> init: anApp [
 ]
 
 { #category : #private }
-DanmakuGenerator >> newBullet: anApp [
+DanmakuGenerator >> newBullet [
 	^ DanmakuBullet new
-		init: anApp;
+		init: app;
 		yourself
 ]
 
@@ -46,12 +46,12 @@ DanmakuGenerator >> radius: anObject [
 ]
 
 { #category : #api }
-DanmakuGenerator >> update: anApp [
+DanmakuGenerator >> update [
 	radius := radius - 5.
 	radius > 0
 		ifTrue: [ ^ self ].
 	radius \\ 20 == 0
-		ifTrue: [ self fire: anApp ].
+		ifTrue: [ self fire ].
 	radius < -80
 		ifTrue: [ isAlive := false ]
 ]

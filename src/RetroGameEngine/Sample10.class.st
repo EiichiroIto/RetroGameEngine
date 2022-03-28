@@ -186,16 +186,16 @@ Sample10 >> draw [
 		tileMap: 0
 		at: (scrollX // 4 \\ 128) @ 128
 		extent: 128 @ 128
-		color: nil.
+		transparentColor: nil.
 	engine
 		blt: 0 @ 0
 		tileMap: 0
 		at: scrollX @ 0
 		extent: 128 @ 128
-		color: self class transparentColor.
+		transparentColor: self class transparentColor.
 	engine camera: scrollX @ 0.
-	player draw: self.
-	enemies do: [ :each | each draw: self ]
+	player draw.
+	enemies do: #draw
 ]
 
 { #category : #accessing }
@@ -359,13 +359,13 @@ Sample10 >> spawnEnemy: anInteger with: anInteger2 [
 Sample10 >> update [
 	(engine isPressing: (RetroGameInputs key: $Q))
 		ifTrue: [ self quit ].
-	player update: self.
+	player update.
 	enemies
 		do: [ :each | 
 			((player position x - each position x) abs < 6
 				and: [ (player position y - each position y) abs < 6 ])
 				ifTrue: [ ^ self gameOver ].
-			each update: self.
+			each update.
 			(each position x < (scrollX - 8)
 				or: [ each position x > (scrollX + 160) or: [ each position y > 160 ] ])
 				ifTrue: [ each isAlive: false ] ].

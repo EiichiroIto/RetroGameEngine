@@ -2,6 +2,7 @@ Class {
 	#name : #Sample06Bubble,
 	#superclass : #Object,
 	#instVars : [
+		'app',
 		'position',
 		'radius',
 		'velocity',
@@ -26,8 +27,8 @@ Sample06Bubble >> containsPoint: aPoint [
 ]
 
 { #category : #api }
-Sample06Bubble >> draw: anApp [
-	anApp engine
+Sample06Bubble >> draw [
+	app engine
 		circle: position truncated
 		radius: radius truncated
 		color: color
@@ -35,15 +36,16 @@ Sample06Bubble >> draw: anApp [
 
 { #category : #api }
 Sample06Bubble >> init: anApp [
-	radius := anApp engine randomFloatFrom: 3 to: 10.
-	position := (anApp engine
+	app := anApp.
+	radius := app engine randomFloatFrom: 3 to: 10.
+	position := (app engine
 		randomFloatFrom: radius
 		to: Sample06 screenWidth - radius)
-		@ (anApp engine randomFloatFrom: radius to: Sample06 screenHeight - radius).
+		@ (app engine randomFloatFrom: radius to: Sample06 screenHeight - radius).
 	velocity := Point
-		r: (anApp engine randomFloatFrom: 0 to: Sample06 maxBubbleSpeed)
-		degrees: (anApp engine randomFrom: 0 to: 359).
-	color := anApp engine randomFrom: 1 to: 15
+		r: (app engine randomFloatFrom: 0 to: Sample06 maxBubbleSpeed)
+		degrees: (app engine randomFrom: 0 to: 359).
+	color := app engine randomFrom: 1 to: 15
 ]
 
 { #category : #testing }
@@ -74,7 +76,7 @@ Sample06Bubble >> radius: anObject [
 ]
 
 { #category : #api }
-Sample06Bubble >> update: anApp [
+Sample06Bubble >> update [
 	position := position + velocity.
 	((velocity x < 0 and: [ position x < radius ])
 		or:

@@ -92,31 +92,31 @@ Sample03 >> drawTestBlt: aPoint [
 		imageBank: 0
 		at: 0 @ 0
 		extent: 16 @ 16
-		color: nil.
+		transparentColor: nil.
 	engine
 		blt: (pos x + offset + 19) @ pos y
 		imageBank: 0
 		at: 0 @ 0
 		extent: 16 @ 16
-		color: 13.
+		transparentColor: 13.
 	engine
 		blt: (pos x + 38) @ pos y
 		imageBank: 0
 		at: 0 @ 0
 		extent: -16 @ 16
-		color: 13.
+		transparentColor: 13.
 	engine
 		blt: (pos x + 57) @ pos y
 		imageBank: 0
 		at: 0 @ 0
 		extent: 16 @ -16
-		color: 13.
+		transparentColor: 13.
 	engine
 		blt: (pos x + 76) @ pos y
 		imageBank: 0
 		at: 0 @ 0
 		extent: -16 @ -16
-		color: 13
+		transparentColor: 13
 ]
 
 { #category : #private }
@@ -131,7 +131,7 @@ Sample03 >> drawTestBltTileMap: aPoint [
 		tileMap: 0
 		at: 0 @ 0
 		extent: 88 @ 16
-		color: 2
+		transparentColor: 2
 ]
 
 { #category : #private }

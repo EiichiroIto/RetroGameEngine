@@ -205,6 +205,124 @@ RetroGameImageTest >> testContainsPoint [
 ]
 
 { #category : #test }
+RetroGameImageTest >> testEllipseExtentColor [
+	| e |
+	e := self newImage.
+	e extent: 16 @ 10.
+	e init.
+	e ellipse: 0 @ 0 extent: 11 @ 7 color: 5.
+	self
+		assertCollection: e array
+		equals: #[
+ 0 0 0 5 5 5 5 5 0 0 0 0 0 0 0 0
+ 0 0 5 5 5 5 5 5 5 0 0 0 0 0 0 0
+ 5 5 5 5 5 5 5 5 5 5 5 0 0 0 0 0
+ 5 5 5 5 5 5 5 5 5 5 5 0 0 0 0 0
+ 5 5 5 5 5 5 5 5 5 5 5 0 0 0 0 0
+ 0 0 5 5 5 5 5 5 5 0 0 0 0 0 0 0
+ 0 0 0 5 5 5 5 5 0 0 0 0 0 0 0 0
+ 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+ 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+ 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+].
+	e := self newImage.
+	e extent: 16 @ 10.
+	e init.
+	e ellipse: 0 @ 0 extent: 10 @ 7 color: 5.
+	self
+		assertCollection: e array
+		equals: #[
+ 0 0 0 5 5 5 5 0 0 0 0 0 0 0 0 0
+ 0 0 5 5 5 5 5 5 0 0 0 0 0 0 0 0
+ 5 5 5 5 5 5 5 5 5 5 0 0 0 0 0 0
+ 5 5 5 5 5 5 5 5 5 5 0 0 0 0 0 0
+ 5 5 5 5 5 5 5 5 5 5 0 0 0 0 0 0
+ 0 0 5 5 5 5 5 5 0 0 0 0 0 0 0 0
+ 0 0 0 5 5 5 5 0 0 0 0 0 0 0 0 0
+ 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+ 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+ 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+].
+	e := self newImage.
+	e extent: 16 @ 10.
+	e init.
+	e ellipse: 0 @ 0 extent: 10 @ 6 color: 5.
+	self
+		assertCollection: e array
+		equals: #[
+ 0 0 0 5 5 5 5 0 0 0 0 0 0 0 0 0
+ 0 0 5 5 5 5 5 5 0 0 0 0 0 0 0 0
+ 5 5 5 5 5 5 5 5 5 5 0 0 0 0 0 0
+ 5 5 5 5 5 5 5 5 5 5 0 0 0 0 0 0
+ 0 0 5 5 5 5 5 5 0 0 0 0 0 0 0 0
+ 0 0 0 5 5 5 5 0 0 0 0 0 0 0 0 0
+ 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+ 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+ 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+ 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+]
+]
+
+{ #category : #test }
+RetroGameImageTest >> testEllipseFrameExtentColor [
+	| e |
+	e := self newImage.
+	e extent: 16 @ 10.
+	e init.
+	e ellipseFrame: 0 @ 0 extent: 11 @ 7 color: 5.
+	self
+		assertCollection: e array
+		equals: #[
+ 0 0 0 5 5 5 5 5 0 0 0 0 0 0 0 0
+ 0 0 5 0 0 0 0 0 5 0 0 0 0 0 0 0
+ 5 5 0 0 0 0 0 0 0 5 5 0 0 0 0 0
+ 5 0 0 0 0 0 0 0 0 0 5 0 0 0 0 0
+ 5 5 0 0 0 0 0 0 0 5 5 0 0 0 0 0
+ 0 0 5 0 0 0 0 0 5 0 0 0 0 0 0 0
+ 0 0 0 5 5 5 5 5 0 0 0 0 0 0 0 0
+ 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+ 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+ 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+].
+	e := self newImage.
+	e extent: 16 @ 10.
+	e init.
+	e ellipseFrame: 0 @ 0 extent: 10 @ 7 color: 5.
+	self
+		assertCollection: e array
+		equals: #[
+ 0 0 0 5 5 5 5 0 0 0 0 0 0 0 0 0
+ 0 0 5 0 0 0 0 5 0 0 0 0 0 0 0 0
+ 5 5 0 0 0 0 0 0 5 5 0 0 0 0 0 0
+ 5 0 0 0 0 0 0 0 0 5 0 0 0 0 0 0
+ 5 5 0 0 0 0 0 0 5 5 0 0 0 0 0 0
+ 0 0 5 0 0 0 0 5 0 0 0 0 0 0 0 0
+ 0 0 0 5 5 5 5 0 0 0 0 0 0 0 0 0
+ 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+ 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+ 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+].
+	e := self newImage.
+	e extent: 16 @ 10.
+	e init.
+	e ellipseFrame: 0 @ 0 extent: 10 @ 6 color: 5.
+	self
+		assertCollection: e array
+		equals: #[
+ 0 0 0 5 5 5 5 0 0 0 0 0 0 0 0 0
+ 0 0 5 0 0 0 0 5 0 0 0 0 0 0 0 0
+ 5 5 0 0 0 0 0 0 5 5 0 0 0 0 0 0
+ 5 5 0 0 0 0 0 0 5 5 0 0 0 0 0 0
+ 0 0 5 0 0 0 0 5 0 0 0 0 0 0 0 0
+ 0 0 0 5 5 5 5 0 0 0 0 0 0 0 0 0
+ 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+ 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+ 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+ 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+]
+]
+
+{ #category : #test }
 RetroGameImageTest >> testEllipsePointsExtent [
 	| s r |
 	s := self newImage.

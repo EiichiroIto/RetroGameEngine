@@ -34,7 +34,7 @@ Sample01 >> draw [
 		imageBank: 0
 		at: 0 @ 0
 		extent: 38 @ 16
-		color: nil
+		transparentColor: nil
 ]
 
 { #category : #api }

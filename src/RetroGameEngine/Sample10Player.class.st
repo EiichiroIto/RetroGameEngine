@@ -24,19 +24,19 @@ Sample10Player >> direction: anObject [
 ]
 
 { #category : #api }
-Sample10Player >> draw: anApp [
-	anApp engine
+Sample10Player >> draw [
+	app engine
 		blt: position
 		imageBank: 0
 		at:
 			((isFalling
 				ifTrue: [ 2 ]
-				ifFalse: [ anApp engine frameCount // 3 \\ 2 ]) * 8) @ 16
+				ifFalse: [ app engine frameCount // 3 \\ 2 ]) * 8) @ 16
 		extent:
 			(direction > 0
 				ifTrue: [ 8 ]
 				ifFalse: [ -8 ]) @ 8
-		color: anApp class transparentColor
+		transparentColor: app class transparentColor
 ]
 
 { #category : #api }
@@ -57,10 +57,10 @@ Sample10Player >> isFalling: anObject [
 ]
 
 { #category : #api }
-Sample10Player >> update: anApp [
+Sample10Player >> update [
 	| lastY dx lastScrollX |
 	lastY := position y.
-	anApp engine
+	app engine
 		in: [ :engine |
 			dx := delta x.
 			(engine isPressing: RetroGameInputs left)
@@ -72,16 +72,16 @@ Sample10Player >> update: anApp [
 			delta := dx @ (delta y + 1 min: 3).
 			(engine isPressed: RetroGameInputs space)
 				ifTrue: [ delta := delta x @ (delta y - 6) ].
-			position := anApp pushBack: position delta: delta.
-			position x < anApp scrollX
-				ifTrue: [ position := anApp scrollX @ position y ].
+			position := app pushBack: position delta: delta.
+			position x < app scrollX
+				ifTrue: [ position := app scrollX @ position y ].
 			position y < 0
 				ifTrue: [ position := position x @ 0 ].
 			delta := (delta x * 0.8) asInteger @ delta y.
 			isFalling := position y > lastY.
-			position x > (anApp scrollX + self class scrollBorderX)
-				ifTrue: [ lastScrollX := anApp scrollX.
-					anApp
+			position x > (app scrollX + self class scrollBorderX)
+				ifTrue: [ lastScrollX := app scrollX.
+					app
 						scrollX: (position x - self class scrollBorderX min: 240 * 8).
-					anApp spawnEnemy: lastScrollX + 128 with: anApp scrollX + 127 ] ]
+					app spawnEnemy: lastScrollX + 128 with: app scrollX + 127 ] ]
 ]

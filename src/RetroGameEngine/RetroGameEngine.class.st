@@ -51,23 +51,30 @@ RetroGameEngine class >> pixelColors [
 ]
 
 { #category : #'screen api' }
-RetroGameEngine >> blt: aPoint imageBank: anInteger at: aPoint3 extent: aPoint4 color: anIntegerOrNil [
-	| bitBlt |
-	bitBlt := RetroGameBitBlt new
-		sourceArray: (imageBanks at: anInteger + 1) array;
+RetroGameEngine >> blt: aPoint image: anImage at: aPoint3 extent: aPoint4 transparentColor: anIntegerOrNil [
+	RetroGameBitBlt new
+		sourceArray: anImage array;
 		sourcePoint: aPoint3 truncated;
-		sourceExtent: (imageBanks at: anInteger + 1) extent;
+		sourceExtent: anImage extent;
 		destArray: screen array;
 		destPoint: (aPoint - camera) truncated;
 		destMask: screen mask;
 		destExtent: screen extent;
-		clipExtent: aPoint4 truncated.
-	bitBlt copyBitsTranslucent: anIntegerOrNil
+		clipExtent: aPoint4 truncated;
+		transparentColor: anIntegerOrNil;
+		copyBits
 ]
 
 { #category : #'screen api' }
-RetroGameEngine >> blt: aPoint tileMap: anInteger at: aPoint3 extent: aPoint4 color: anIntegerOrNil [
-	| tileMapPoint tileMapExtent tileMap image pos bitBlt |
+RetroGameEngine >> blt: aPoint imageBank: anInteger at: aPoint3 extent: aPoint4 transparentColor: anIntegerOrNil [
+	| image |
+	image := imageBanks at: anInteger + 1.
+	self blt: aPoint image: image at: aPoint3 extent: aPoint4 transparentColor: anIntegerOrNil
+]
+
+{ #category : #'screen api' }
+RetroGameEngine >> blt: aPoint tileMap: anInteger at: aPoint3 extent: aPoint4 transparentColor: anIntegerOrNil [
+	| tileMapPoint tileMapExtent tileMap image pos |
 	tileMapPoint := aPoint3 // 8.
 	tileMapExtent := (aPoint4 abs / 8) ceiling.
 	pos := aPoint3 \\ 8.
@@ -76,7 +83,7 @@ RetroGameEngine >> blt: aPoint tileMap: anInteger at: aPoint3 extent: aPoint4 co
 		buildImageOfTileMap: tileMap
 		at: tileMapPoint
 		extent: tileMapExtent.
-	bitBlt := RetroGameBitBlt new
+	RetroGameBitBlt new
 		sourceArray: image array;
 		sourceExtent: image extent;
 		sourcePoint: pos;
@@ -84,8 +91,9 @@ RetroGameEngine >> blt: aPoint tileMap: anInteger at: aPoint3 extent: aPoint4 co
 		destMask: screen mask;
 		destExtent: screen extent;
 		destPoint: (aPoint - camera) truncated;
-		clipExtent: aPoint4.
-	bitBlt copyBitsTranslucent: anIntegerOrNil
+		clipExtent: aPoint4;
+		transparentColor: anIntegerOrNil;
+		copyBits
 ]
 
 { #category : #accessing }
@@ -176,22 +184,12 @@ RetroGameEngine >> displayInfo [
 
 { #category : #'screen api' }
 RetroGameEngine >> ellipse: aPoint extent: aPoint2 color: anInteger [
-	| points bothEnds |
-	points := screen ellipsePointsExtent: aPoint2.
-	bothEnds := screen bothEndsOf: points height: aPoint2 y.
-	bothEnds
-		withIndexDo: [ :each :index | 
-			self
-				hLine: aPoint truncated + (each first @ (index - 1))
-				length: each second - each first + 1
-				color: anInteger ]
+	screen ellipse: aPoint extent: aPoint2 color: anInteger
 ]
 
 { #category : #'screen api' }
 RetroGameEngine >> ellipseFrame: aPoint extent: aPoint2 color: anInteger [
-	| points |
-	points := screen ellipsePointsExtent: aPoint2.
-	points do: [ :each | self pixelAt: aPoint + each put: anInteger ]
+	screen ellipseFrame: aPoint extent: aPoint2 color: anInteger
 ]
 
 { #category : #api }

@@ -75,7 +75,7 @@ RetroGameBitBltTest >> testClipRange [
 ]
 
 { #category : #test }
-RetroGameBitBltTest >> testCopyBitsTranslucent [
+RetroGameBitBltTest >> testCopyBits [
 	| bitBlt dest source |
 	bitBlt := self newBitBlt.
 	dest := #(0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0).
@@ -88,7 +88,8 @@ RetroGameBitBltTest >> testCopyBitsTranslucent [
 		sourceExtent: 3 @ 3;
 		sourcePoint: 1 @ 0;
 		clipExtent: 2 @ 3;
-		copyBitsTranslucent: 5.
+		transparentColor: 5;
+		copyBits.
 	self
 		assertCollection: dest
 		equals: #(0 0 0 0 0 0 0 0 0 0 0 1 2 0 0 0 3 4 0 0 0 0 6 0 0 0 0 0 0 0).
@@ -103,7 +104,7 @@ RetroGameBitBltTest >> testCopyBitsTranslucent [
 		sourceExtent: 3 @ 3;
 		sourcePoint: 1 @ 0;
 		clipExtent: 2 @ 3;
-		copyBitsTranslucent: nil.
+		copyBits.
 	self
 		assertCollection: dest
 		equals: #(0 0 0 0 0 0 0 0 0 0 0 1 2 0 0 0 3 4 0 0 0 5 6 0 0 0 0 0 0 0).
@@ -118,7 +119,7 @@ RetroGameBitBltTest >> testCopyBitsTranslucent [
 		sourceExtent: 3 @ 3;
 		sourcePoint: 1 @ 1;
 		clipExtent: 3 @ 3;
-		copyBitsTranslucent: nil.
+		copyBits.
 	self assertCollection: dest equals: #(5 6 8 9).
 	bitBlt := self newBitBlt.
 	dest := #(1 2 3 4).
@@ -131,7 +132,7 @@ RetroGameBitBltTest >> testCopyBitsTranslucent [
 		sourceExtent: 3 @ 3;
 		sourcePoint: -1 @ -1;
 		clipExtent: 3 @ 3;
-		copyBitsTranslucent: nil.
+		copyBits.
 	self assertCollection: dest equals: #(1 2 4 5).
 	bitBlt := self newBitBlt.
 	dest := #(1 2 3 4).
@@ -144,7 +145,7 @@ RetroGameBitBltTest >> testCopyBitsTranslucent [
 		sourceExtent: 3 @ 3;
 		sourcePoint: -3 @ -3;
 		clipExtent: 3 @ 3;
-		copyBitsTranslucent: nil.
+		copyBits.
 	self assertCollection: dest equals: #(1 2 3 4).
 	bitBlt := self newBitBlt.
 	dest := #(1 2 3 4).
@@ -157,7 +158,7 @@ RetroGameBitBltTest >> testCopyBitsTranslucent [
 		sourceExtent: 3 @ 3;
 		sourcePoint: 3 @ 3;
 		clipExtent: 3 @ 3;
-		copyBitsTranslucent: nil.
+		copyBits.
 	self assertCollection: dest equals: #(1 2 3 4).
 	bitBlt := self newBitBlt.
 	dest := #(1 2 3 4).
@@ -170,7 +171,7 @@ RetroGameBitBltTest >> testCopyBitsTranslucent [
 		sourceExtent: 3 @ 3;
 		sourcePoint: 0 @ 0;
 		clipExtent: 3 @ 3;
-		copyBitsTranslucent: nil.
+		copyBits.
 	self assertCollection: dest equals: #(1 2 3 4).
 	bitBlt := self newBitBlt.
 	dest := #(1 2 3 4).
@@ -183,7 +184,7 @@ RetroGameBitBltTest >> testCopyBitsTranslucent [
 		sourceExtent: 3 @ 3;
 		sourcePoint: 0 @ 0;
 		clipExtent: 3 @ 3;
-		copyBitsTranslucent: nil.
+		copyBits.
 	self assertCollection: dest equals: #(1 2 3 4)
 ]
 
@@ -283,4 +284,13 @@ RetroGameBitBltTest >> testSourcePoint [
 	self assert: bitBlt sourcePoint isNil.
 	bitBlt sourcePoint: 2 @ 3.
 	self assert: bitBlt sourcePoint equals: 2 @ 3
+]
+
+{ #category : #test }
+RetroGameBitBltTest >> testTransparentColor [
+	| bitBlt |
+	bitBlt := self newBitBlt.
+	self assert: bitBlt transparentColor isNil.
+	bitBlt transparentColor: 5.
+	self assert: bitBlt transparentColor equals: 5
 ]

@@ -5,16 +5,16 @@ Class {
 }
 
 { #category : #api }
-Sample10Bullet >> draw: anApp [
-	anApp engine
+Sample10Bullet >> draw [
+	app engine
 		blt: position
 		imageBank: 0
-		at: (anApp engine frameCount // 2 \\ 2 * 8 + 16) @ 32
+		at: (app engine frameCount // 2 \\ 2 * 8 + 16) @ 32
 		extent: 8 @ 8
-		color: anApp class transparentColor
+		transparentColor: app class transparentColor
 ]
 
 { #category : #updating }
-Sample10Bullet >> update: anApp [
+Sample10Bullet >> update [
 	position := position + delta
 ]
