@@ -1,9 +1,7 @@
 Class {
 	#name : #Sample09Object,
-	#superclass : #Object,
+	#superclass : #RetroGameObject,
 	#instVars : [
-		'app',
-		'position',
 		'isAlive'
 	],
 	#category : #'RetroGameEngine-Samples'
@@ -15,23 +13,13 @@ Sample09Object class >> extent [
 ]
 
 { #category : #accessing }
-Sample09Object >> app [
-	^ app
-]
-
-{ #category : #accessing }
-Sample09Object >> app: anObject [
-	app := anObject
-]
-
-{ #category : #accessing }
 Sample09Object >> height [
 	^ self class extent y
 ]
 
 { #category : #api }
 Sample09Object >> init: anApp [
-	app := anApp.
+	super init: anApp.
 	isAlive := true
 ]
 
@@ -43,16 +31,6 @@ Sample09Object >> isAlive [
 { #category : #accessing }
 Sample09Object >> isAlive: anObject [
 	isAlive := anObject
-]
-
-{ #category : #accessing }
-Sample09Object >> position [
-	^ position
-]
-
-{ #category : #accessing }
-Sample09Object >> position: anObject [
-	position := anObject
 ]
 
 { #category : #accessing }

@@ -16,7 +16,7 @@ Sample09Player class >> speed [
 
 { #category : #api }
 Sample09Player >> draw [
-	app engine blt: position imageBank: 0 at: 0 @ 0 extent: self class extent transparentColor: 0
+	app engine blt: position imageNo: 0 at: 0 @ 0 extent: self class extent transparentColor: 0
 ]
 
 { #category : #api }

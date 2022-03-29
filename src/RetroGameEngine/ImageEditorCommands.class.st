@@ -1,6 +1,6 @@
 Class {
 	#name : #ImageEditorCommands,
-	#superclass : #ImageEditorObject,
+	#superclass : #RetroGameObject,
 	#instVars : [
 		'pasteBuffer'
 	],
@@ -107,11 +107,6 @@ ImageEditorCommands >> cutSelection [
 ]
 
 { #category : #constants }
-ImageEditorCommands >> defaultExtent [
-	^ self commandExtent * (1 @ self class commands size) + 1
-]
-
-{ #category : #constants }
 ImageEditorCommands >> defaultPosition [
 	^ 200 @ 10
 ]
@@ -120,12 +115,17 @@ ImageEditorCommands >> defaultPosition [
 ImageEditorCommands >> draw [
 	| e p |
 	e := app engine.
-	e rect: position - 1 extent: extent + 2 color: 1.
+	e rect: position - 1 extent: self extent + 2 color: 1.
 	self class commands
 		withIndexDo: [ :each :index | 
 			p := self commandPositionAt: index.
 			e rect: p extent: self commandExtent - 1 color: 6.
 			e text: each at: p + 1 color: 0 ]
+]
+
+{ #category : #constants }
+ImageEditorCommands >> extent [
+	^ self commandExtent * (1 @ self class commands size) + 1
 ]
 
 { #category : #actions }

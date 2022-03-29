@@ -11,7 +11,7 @@ Class {
 Sample10Enemy2 >> draw [
 	app engine
 		blt: position
-		imageBank: 0
+		imageNo: 0
 		at: 0 @ (app engine frameCount // 4 \\ 2 * 8 + 16)
 		extent:
 			(direction > 0

@@ -1,9 +1,7 @@
 Class {
 	#name : #Sample06Bubble,
-	#superclass : #Object,
+	#superclass : #RetroGameObject,
 	#instVars : [
-		'app',
-		'position',
 		'radius',
 		'velocity',
 		'color'
@@ -36,7 +34,7 @@ Sample06Bubble >> draw [
 
 { #category : #api }
 Sample06Bubble >> init: anApp [
-	app := anApp.
+	super init: anApp.
 	radius := app engine randomFloatFrom: 3 to: 10.
 	position := (app engine
 		randomFloatFrom: radius
@@ -53,16 +51,6 @@ Sample06Bubble >> intersects: aBubble [
 	| totalR |
 	totalR := radius + aBubble radius.
 	^ (position squaredDistanceTo: aBubble position) < totalR squared
-]
-
-{ #category : #accessing }
-Sample06Bubble >> position [
-	^ position
-]
-
-{ #category : #accessing }
-Sample06Bubble >> position: anObject [
-	position := anObject
 ]
 
 { #category : #accessing }

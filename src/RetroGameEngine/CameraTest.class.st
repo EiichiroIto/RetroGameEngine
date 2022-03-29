@@ -73,31 +73,31 @@ CameraTest >> drawTestBlt: aPoint [
 	offset := (engine sin: engine frameCount * 5.73) * 2.
 	engine
 		blt: pos
-		imageBank: 0
+		imageNo: 0
 		at: 0 @ 0
 		extent: 16 @ 16
 		transparentColor: nil.
 	engine
 		blt: (pos x + offset + 19) @ pos y
-		imageBank: 0
+		imageNo: 0
 		at: 0 @ 0
 		extent: 16 @ 16
 		transparentColor: 13.
 	engine
 		blt: (pos x + 38) @ pos y
-		imageBank: 0
+		imageNo: 0
 		at: 0 @ 0
 		extent: -16 @ 16
 		transparentColor: 13.
 	engine
 		blt: (pos x + 57) @ pos y
-		imageBank: 0
+		imageNo: 0
 		at: 0 @ 0
 		extent: 16 @ -16
 		transparentColor: 13.
 	engine
 		blt: (pos x + 76) @ pos y
-		imageBank: 0
+		imageNo: 0
 		at: 0 @ 0
 		extent: -16 @ -16
 		transparentColor: 13
@@ -112,7 +112,7 @@ CameraTest >> drawTestBltTileMap: aPoint [
 		color: 7.
 	engine
 		blt: aPoint + (0 @ 15)
-		tileMap: 0
+		tileMapNo: 0
 		at: 0 @ 0
 		extent: 88 @ 16
 		transparentColor: 2

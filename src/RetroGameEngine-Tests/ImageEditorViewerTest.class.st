@@ -44,13 +44,13 @@ ImageEditorViewerTest >> testCursorPosition [
 ]
 
 { #category : #test }
-ImageEditorViewerTest >> testDefaultExtent [
-	self assert: self newObj defaultExtent isPoint
+ImageEditorViewerTest >> testDefaultPosition [
+	self assert: self newObj defaultPosition isPoint
 ]
 
 { #category : #test }
-ImageEditorViewerTest >> testDefaultPosition [
-	self assert: self newObj defaultPosition isPoint
+ImageEditorViewerTest >> testExtent [
+	self assert: self newObj extent isPoint
 ]
 
 { #category : #test }

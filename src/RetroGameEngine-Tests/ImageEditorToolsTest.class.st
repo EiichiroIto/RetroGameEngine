@@ -15,11 +15,6 @@ ImageEditorToolsTest >> newObj [
 ]
 
 { #category : #test }
-ImageEditorToolsTest >> testDefaultExtent [
-	self assert: self newObj defaultExtent isPoint
-]
-
-{ #category : #test }
 ImageEditorToolsTest >> testDefaultPosition [
 	self assert: self newObj defaultPosition isPoint
 ]
@@ -32,6 +27,11 @@ ImageEditorToolsTest >> testEllipseFrameTool [
 { #category : #test }
 ImageEditorToolsTest >> testEllipseTool [
 	self assert: ImageEditorTools ellipseTool equals: 5
+]
+
+{ #category : #test }
+ImageEditorToolsTest >> testExtent [
+	self assert: self newObj extent isPoint
 ]
 
 { #category : #test }

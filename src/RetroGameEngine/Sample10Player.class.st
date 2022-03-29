@@ -27,7 +27,7 @@ Sample10Player >> direction: anObject [
 Sample10Player >> draw [
 	app engine
 		blt: position
-		imageBank: 0
+		imageNo: 0
 		at:
 			((isFalling
 				ifTrue: [ 2 ]

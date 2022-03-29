@@ -66,21 +66,20 @@ RetroGameEngine >> blt: aPoint image: anImage at: aPoint3 extent: aPoint4 transp
 ]
 
 { #category : #'screen api' }
-RetroGameEngine >> blt: aPoint imageBank: anInteger at: aPoint3 extent: aPoint4 transparentColor: anIntegerOrNil [
+RetroGameEngine >> blt: aPoint imageNo: anInteger at: aPoint3 extent: aPoint4 transparentColor: anIntegerOrNil [
 	| image |
 	image := imageBanks at: anInteger + 1.
 	self blt: aPoint image: image at: aPoint3 extent: aPoint4 transparentColor: anIntegerOrNil
 ]
 
 { #category : #'screen api' }
-RetroGameEngine >> blt: aPoint tileMap: anInteger at: aPoint3 extent: aPoint4 transparentColor: anIntegerOrNil [
-	| tileMapPoint tileMapExtent tileMap image pos |
+RetroGameEngine >> blt: aPoint tileMap: aTileMap at: aPoint3 extent: aPoint4 transparentColor: anIntegerOrNil [
+	| tileMapPoint tileMapExtent image pos |
 	tileMapPoint := aPoint3 // 8.
 	tileMapExtent := (aPoint4 abs / 8) ceiling.
 	pos := aPoint3 \\ 8.
-	tileMap := self tileMap: anInteger.
-	image := (self imageBank: tileMap imageBank)
-		buildImageOfTileMap: tileMap
+	image := (self imageBank: aTileMap imageBank)
+		buildImageOfTileMap: aTileMap
 		at: tileMapPoint
 		extent: tileMapExtent.
 	RetroGameBitBlt new
@@ -94,6 +93,18 @@ RetroGameEngine >> blt: aPoint tileMap: anInteger at: aPoint3 extent: aPoint4 tr
 		clipExtent: aPoint4;
 		transparentColor: anIntegerOrNil;
 		copyBits
+]
+
+{ #category : #'screen api' }
+RetroGameEngine >> blt: aPoint tileMapNo: anInteger at: aPoint3 extent: aPoint4 transparentColor: anIntegerOrNil [
+	| tileMap |
+	tileMap := self tileMap: anInteger.
+	self
+		blt: aPoint
+		tileMap: tileMap
+		at: aPoint3
+		extent: aPoint4
+		transparentColor: anIntegerOrNil
 ]
 
 { #category : #accessing }

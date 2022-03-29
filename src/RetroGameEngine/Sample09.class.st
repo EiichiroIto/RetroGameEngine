@@ -135,36 +135,36 @@ Sample09 >> newBackground [
 { #category : #private }
 Sample09 >> newBlastAt: aPoint extent: aPoint2 [
 	^ Sample09Blast new
-		position: aPoint + (aPoint2 / 2);
 		init: self;
+		position: aPoint + (aPoint2 / 2);
 		yourself
 ]
 
 { #category : #private }
 Sample09 >> newBulletAt: aPoint [
 	^ Sample09Bullet new
+		init: self;
 		position:
 			aPoint
 				+
 					(((Sample09Player extent x - Sample09Bullet extent x) / 2)
 						@ (Sample09Bullet extent y / 2) negated);
-		init: self;
 		yourself
 ]
 
 { #category : #private }
 Sample09 >> newEnemy [
 	^ Sample09Enemy new
-		position: (engine randomFrom: 0 to: engine width - Sample09Enemy extent x) @ 0;
 		init: self;
+		position: (engine randomFrom: 0 to: engine width - Sample09Enemy extent x) @ 0;
 		yourself
 ]
 
 { #category : #private }
 Sample09 >> newPlayer [
 	^ Sample09Player new
-		position: (engine width / 2) @ (engine height - 20);
 		init: self;
+		position: (engine width / 2) @ (engine height - 20);
 		yourself.
 ]
 

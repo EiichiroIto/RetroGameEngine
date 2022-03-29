@@ -1,6 +1,6 @@
 Class {
 	#name : #ImageEditorPalette,
-	#superclass : #ImageEditorObject,
+	#superclass : #RetroGameObject,
 	#instVars : [
 		'colorNo'
 	],
@@ -29,11 +29,6 @@ ImageEditorPalette >> colorPositionAt: anInteger [
 ]
 
 { #category : #constants }
-ImageEditorPalette >> defaultExtent [
-	^ 8 @ 2 * 6 + (1 @ 1)
-]
-
-{ #category : #constants }
 ImageEditorPalette >> defaultPosition [
 	^ 4 @ 116
 ]
@@ -42,12 +37,17 @@ ImageEditorPalette >> defaultPosition [
 ImageEditorPalette >> draw [
 	| e p |
 	e := app engine.
-	e rect: position extent: extent color: 1.
+	e rect: position extent: self extent color: 1.
 	0 to: 15 do: [ :each | 
 		p := self colorPositionAt: each.
 		e rect: p extent: self colorExtent color: each.
 		each = colorNo
 			ifTrue: [ e rectFrame: p - 1 extent: self colorExtent + 2 color: 7 ] ]
+]
+
+{ #category : #constants }
+ImageEditorPalette >> extent [
+	^ 8 @ 2 * 6 + (1 @ 1)
 ]
 
 { #category : #api }

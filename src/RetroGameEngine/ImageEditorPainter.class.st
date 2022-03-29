@@ -1,6 +1,6 @@
 Class {
 	#name : #ImageEditorPainter,
-	#superclass : #ImageEditorObject,
+	#superclass : #RetroGameObject,
 	#instVars : [
 		'dragEnd',
 		'dragStart',
@@ -22,11 +22,6 @@ ImageEditorPainter >> clearSelection [
 { #category : #constants }
 ImageEditorPainter >> cursorExtent [
 	^ 16 @ 16
-]
-
-{ #category : #constants }
-ImageEditorPainter >> defaultExtent [
-	^ self pixelExtent * 16
 ]
 
 { #category : #constants }
@@ -56,7 +51,7 @@ ImageEditorPainter >> dragStart: anObject [
 
 { #category : #api }
 ImageEditorPainter >> draw [
-	app engine rect: position - 1 extent: extent + 2 color: 1.
+	app engine rect: position - 1 extent: self extent + 2 color: 1.
 	self drawPixels.
 	self drawGuideline.
 	self drawDragging.
@@ -79,10 +74,10 @@ ImageEditorPainter >> drawGuideline [
 	pos := self pixelExtent * 8.
 	app engine
 		line: position + (0 @ pos y)
-			to: position + ((extent x - 1) @ pos y)
+			to: position + ((self extent x - 1) @ pos y)
 			color: 1;
 		line: position + (pos x @ 0)
-			to: position + (pos x @ (extent y - 1))
+			to: position + (pos x @ (self extent y - 1))
 			color: 1
 ]
 
@@ -127,6 +122,11 @@ ImageEditorPainter >> ellipseFrame [
 		ellipseFrame: dragStart + app viewer imagePosition
 		extent: dragEnd - dragStart + 1
 		color: app colorNo
+]
+
+{ #category : #constants }
+ImageEditorPainter >> extent [
+	^ self pixelExtent * 16
 ]
 
 { #category : #actions }

@@ -292,13 +292,13 @@ Sample02 >> draw [
 	engine cls: 12.
 	engine
 		blt: 0 @ 88
-		imageBank: 0
+		imageNo: 0
 		at: 0 @ 88
 		extent: 160 @ 32
 		transparentColor: nil.
 	engine
 		blt: 0 @ 88
-		imageBank: 0
+		imageNo: 0
 		at: 0 @ 64
 		extent: 160 @ 24
 		transparentColor: 12.
@@ -306,7 +306,7 @@ Sample02 >> draw [
 	0 to: 1 do: [ :each | 
 		engine
 			blt: (each * 160 - offset) @ 104
-			imageBank: 0
+			imageNo: 0
 			at: 0 @ 48
 			extent: 160 @ 16
 			transparentColor: 12 ].
@@ -316,7 +316,7 @@ Sample02 >> draw [
 			do: [ :each | 
 				engine
 					blt: (each x + (i * 160) - offset) @ each y
-					imageBank: 0
+					imageNo: 0
 					at: 64 @ 32
 					extent: 32 @ 8
 					transparentColor: 12 ] ].
@@ -326,7 +326,7 @@ Sample02 >> draw [
 			do: [ :each | 
 				engine
 					blt: (each x + (i * 160) - offset) @ each y
-					imageBank: 0
+					imageNo: 0
 					at: 0 @ 32
 					extent: 56 @ 8
 					transparentColor: 12 ] ].
@@ -334,7 +334,7 @@ Sample02 >> draw [
 		do: [ :each | 
 			engine
 				blt: each first @ each second
-				imageBank: 0
+				imageNo: 0
 				at: 0 @ 16
 				extent: 40 @ 8
 				transparentColor: 12 ].
@@ -343,13 +343,13 @@ Sample02 >> draw [
 			each fourth
 				ifTrue: [ engine
 						blt: each first @ each second
-						imageBank: 0
+						imageNo: 0
 						at: (32 + (each third * 16)) @ 0
 						extent: 16 @ 16
 						transparentColor: 12 ] ].
 	engine
 		blt: playerPosition
-		imageBank: 0
+		imageNo: 0
 		at:
 			(playerDy > 0
 				ifTrue: [ 16 ]

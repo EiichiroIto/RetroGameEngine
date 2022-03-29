@@ -40,7 +40,7 @@ Sample09Enemy >> direction: anObject [
 Sample09Enemy >> draw [
 	app engine
 		blt: position
-		imageBank: 0
+		imageNo: 0
 		at: 8 @ 0
 		extent: self class extent * (direction @ 1)
 		transparentColor: 0

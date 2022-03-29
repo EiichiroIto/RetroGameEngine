@@ -20,13 +20,13 @@ ImageEditorSelectorTest >> testButtonExtent [
 ]
 
 { #category : #test }
-ImageEditorSelectorTest >> testDefaultExtent [
-	self assert: self newObj defaultExtent isPoint
+ImageEditorSelectorTest >> testDefaultPosition [
+	self assert: self newObj defaultPosition isPoint
 ]
 
 { #category : #test }
-ImageEditorSelectorTest >> testDefaultPosition [
-	self assert: self newObj defaultPosition isPoint
+ImageEditorSelectorTest >> testExtent [
+	self assert: self newObj extent isPoint
 ]
 
 { #category : #test }

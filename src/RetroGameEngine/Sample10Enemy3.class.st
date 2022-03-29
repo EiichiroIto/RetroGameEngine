@@ -11,7 +11,7 @@ Class {
 Sample10Enemy3 >> draw [
 	app engine
 		blt: position
-		imageBank: 0
+		imageNo: 0
 		at: (app engine frameCount // 8 \\ 2 * 8) @ 32
 		extent: 8 @ 8
 		transparentColor: app class transparentColor

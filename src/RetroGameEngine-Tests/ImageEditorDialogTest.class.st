@@ -7,9 +7,25 @@ Class {
 	#category : #'RetroGameEngine-Tests'
 }
 
-{ #category : #'instance creation' }
+{ #category : #private }
 ImageEditorDialogTest >> newObj [
 	^ ImageEditorDialog new
+]
+
+{ #category : #test }
+ImageEditorDialogTest >> testExtent [
+	| obj |
+	obj := self newObj.
+	self assert: obj extent isNil.
+	obj extent: 1 @ 2.
+	self assert: obj extent equals: 1 @ 2
+]
+
+{ #category : #test }
+ImageEditorDialogTest >> testInit [
+	| obj |
+	obj := self newObj.
+	self assert: obj extent isNil
 ]
 
 { #category : #test }

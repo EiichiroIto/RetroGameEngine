@@ -15,6 +15,22 @@ ImageEditorScrollbarTest >> newObj [
 ]
 
 { #category : #test }
+ImageEditorScrollbarTest >> testExtent [
+	| obj |
+	obj := self newObj.
+	self assert: obj extent equals: 0 @ 0.
+	obj extent: 1 @ 2.
+	self assert: obj extent equals: 1 @ 2
+]
+
+{ #category : #test }
+ImageEditorScrollbarTest >> testInit [
+	| obj |
+	obj := self newObj.
+	self assert: obj extent equals: 0 @ 0
+]
+
+{ #category : #test }
 ImageEditorScrollbarTest >> testKnobLength [
 	| obj |
 	obj := self newObj.

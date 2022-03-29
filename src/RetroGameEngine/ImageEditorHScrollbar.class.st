@@ -28,12 +28,12 @@ ImageEditorHScrollbar >> defaultExtent [
 ImageEditorHScrollbar >> draw [
 	app engine
 		blt: self leftButtonPosition
-			imageBank: 0
+			imageNo: 0
 			at: 56 @ 0
 			extent: 5 @ 5
 			transparentColor: 0;
 		blt: self rightButtonPosition
-			imageBank: 0
+			imageNo: 0
 			at: 62 @ 0
 			extent: 5 @ 5
 			transparentColor: 0;

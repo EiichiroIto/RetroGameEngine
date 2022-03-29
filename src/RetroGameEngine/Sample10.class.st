@@ -183,13 +183,13 @@ Sample10 >> draw [
 	engine resetCamera.
 	engine
 		blt: 0 @ 0
-		tileMap: 0
+		tileMapNo: 0
 		at: (scrollX // 4 \\ 128) @ 128
 		extent: 128 @ 128
 		transparentColor: nil.
 	engine
 		blt: 0 @ 0
-		tileMap: 0
+		tileMapNo: 0
 		at: scrollX @ 0
 		extent: 128 @ 128
 		transparentColor: self class transparentColor.
@@ -253,32 +253,32 @@ Sample10 >> isWall: aPoint [
 { #category : #private }
 Sample10 >> newEnemy1At: aPoint [
 	^ Sample10Enemy1 new
-		position: aPoint;
 		init: self;
+		position: aPoint;
 		yourself
 ]
 
 { #category : #private }
 Sample10 >> newEnemy2At: aPoint [
 	^ Sample10Enemy2 new
-		position: aPoint;
 		init: self;
+		position: aPoint;
 		yourself
 ]
 
 { #category : #private }
 Sample10 >> newEnemy3At: aPoint [
 	^ Sample10Enemy3 new
-		position: aPoint;
 		init: self;
+		position: aPoint;
 		yourself
 ]
 
 { #category : #private }
 Sample10 >> newPlayerAt: aPoint [
 	^ Sample10Player new
-		position: aPoint;
 		init: self;
+		position: aPoint;
 		yourself
 ]
 

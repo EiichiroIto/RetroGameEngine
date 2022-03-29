@@ -35,11 +35,11 @@ ImageEditorPaletteTest >> testColorPositionAt [
 ]
 
 { #category : #test }
-ImageEditorPaletteTest >> testDefaultExtent [
-	self assert: self newObj defaultExtent isPoint
+ImageEditorPaletteTest >> testDefaultPosition [
+	self assert: self newObj defaultPosition isPoint
 ]
 
 { #category : #test }
-ImageEditorPaletteTest >> testDefaultPosition [
-	self assert: self newObj defaultPosition isPoint
+ImageEditorPaletteTest >> testExtent [
+	self assert: self newObj extent isPoint
 ]

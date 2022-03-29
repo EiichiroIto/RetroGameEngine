@@ -8,7 +8,7 @@ Class {
 Sample10Bullet >> draw [
 	app engine
 		blt: position
-		imageBank: 0
+		imageNo: 0
 		at: (app engine frameCount // 2 \\ 2 * 8 + 16) @ 32
 		extent: 8 @ 8
 		transparentColor: app class transparentColor

@@ -1,6 +1,6 @@
 Class {
 	#name : #ImageEditorTools,
-	#superclass : #ImageEditorObject,
+	#superclass : #RetroGameObject,
 	#instVars : [
 		'toolNo'
 	],
@@ -43,11 +43,6 @@ ImageEditorTools class >> selectTool [
 ]
 
 { #category : #constants }
-ImageEditorTools >> defaultExtent [
-	^ 8 @ 1 * 7 + (3 @ 6)
-]
-
-{ #category : #constants }
 ImageEditorTools >> defaultPosition [
 	^ 53 @ 116
 ]
@@ -56,11 +51,11 @@ ImageEditorTools >> defaultPosition [
 ImageEditorTools >> draw [
 	| e |
 	e := app engine.
-	e rect: position extent: extent color: 1.
+	e rect: position extent: self extent color: 1.
 	0 to: 6 do: [ :each | 
 		e
 			blt: (self toolPositionAt: each)
-			imageBank: 0
+			imageNo: 0
 			at: 8 @ 0 * each
 			extent: self toolExtent
 			transparentColor: 0.
@@ -69,6 +64,11 @@ ImageEditorTools >> draw [
 					rectFrame: (self toolPositionAt: each) - 1
 					extent: self toolExtent + 2
 					color: 2 ] ]
+]
+
+{ #category : #constants }
+ImageEditorTools >> extent [
+	^ 8 @ 1 * 7 + (3 @ 6)
 ]
 
 { #category : #api }

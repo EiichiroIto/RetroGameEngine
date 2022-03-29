@@ -1,11 +1,12 @@
 Class {
 	#name : #ImageEditorScrollbar,
-	#superclass : #ImageEditorObject,
+	#superclass : #RetroGameObject,
 	#instVars : [
 		'whenBarClicked',
 		'whenButtonClicked',
 		'knobLength',
-		'knobPosition'
+		'knobPosition',
+		'extent'
 	],
 	#category : #'RetroGameEngine-ImageEditor'
 }
@@ -22,9 +23,20 @@ ImageEditorScrollbar >> defaultExtent [
 	^ 0 @ 0
 ]
 
-{ #category : #constants }
-ImageEditorScrollbar >> defaultPosition [
-	^ 0 @ 0
+{ #category : #accessing }
+ImageEditorScrollbar >> extent [
+	^ extent
+]
+
+{ #category : #accessing }
+ImageEditorScrollbar >> extent: anObject [
+	extent := anObject
+]
+
+{ #category : #api }
+ImageEditorScrollbar >> init: anApp [
+	super init: anApp.
+	extent := self defaultExtent
 ]
 
 { #category : #accessing }

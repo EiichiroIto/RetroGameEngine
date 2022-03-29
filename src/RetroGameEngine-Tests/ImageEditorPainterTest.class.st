@@ -46,11 +46,6 @@ ImageEditorPainterTest >> testCursorExtent [
 ]
 
 { #category : #test }
-ImageEditorPainterTest >> testDefaultExtent [
-	self assert: self newObj defaultExtent isPoint
-]
-
-{ #category : #test }
 ImageEditorPainterTest >> testDefaultPosition [
 	self assert: self newObj defaultPosition isPoint
 ]
@@ -74,12 +69,16 @@ ImageEditorPainterTest >> testDragStart [
 ]
 
 { #category : #test }
+ImageEditorPainterTest >> testExtent [
+	self assert: self newObj extent isPoint
+]
+
+{ #category : #test }
 ImageEditorPainterTest >> testInit [
 	| obj |
 	obj := self newObj.
 	obj init: self newApp.
-	self assert: obj position equals: obj defaultPosition.
-	self assert: obj extent equals: obj defaultExtent
+	self assert: obj position equals: obj defaultPosition
 ]
 
 { #category : #test }

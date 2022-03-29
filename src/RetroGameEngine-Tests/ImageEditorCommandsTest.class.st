@@ -42,13 +42,13 @@ ImageEditorCommandsTest >> testCommands [
 ]
 
 { #category : #test }
-ImageEditorCommandsTest >> testDefaultExtent [
-	self assert: self newObj defaultExtent isPoint
+ImageEditorCommandsTest >> testDefaultPosition [
+	self assert: self newObj defaultPosition isPoint
 ]
 
 { #category : #test }
-ImageEditorCommandsTest >> testDefaultPosition [
-	self assert: self newObj defaultPosition isPoint
+ImageEditorCommandsTest >> testExtent [
+	self assert: self newObj extent isPoint
 ]
 
 { #category : #test }

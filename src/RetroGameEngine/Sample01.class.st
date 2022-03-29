@@ -31,7 +31,7 @@ Sample01 >> draw [
 		color: engine frameCount \\ 16.
 	engine
 		blt: 61 @ 66
-		imageBank: 0
+		imageNo: 0
 		at: 0 @ 0
 		extent: 38 @ 16
 		transparentColor: nil

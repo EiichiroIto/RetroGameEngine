@@ -40,12 +40,12 @@ ImageEditorVScrollbar >> downButtonPosition [
 ImageEditorVScrollbar >> draw [
 	app engine
 		blt: self upButtonPosition
-			imageBank: 0
+			imageNo: 0
 			at: 68 @ 0
 			extent: 5 @ 5
 			transparentColor: 0;
 		blt: self downButtonPosition
-			imageBank: 0
+			imageNo: 0
 			at: 74 @ 0
 			extent: 5 @ 5
 			transparentColor: 0;
