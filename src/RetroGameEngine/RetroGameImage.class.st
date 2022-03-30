@@ -142,7 +142,7 @@ RetroGameImage >> bothEndsOf: aCollection height: anInteger [
 ]
 
 { #category : #api }
-RetroGameImage >> buildImageOfTileMap: aTileMap at: aPoint extent: aPoint4 [
+RetroGameImage >> buildImageOfTilemap: aTileMap at: aPoint extent: aPoint4 [
 	| dest pair |
 	dest := self class new
 		extent: aPoint4 * 8;

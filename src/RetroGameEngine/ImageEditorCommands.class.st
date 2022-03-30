@@ -148,7 +148,7 @@ ImageEditorCommands >> loadItem [
 		do: [ :each | 
 			| list2 |
 			list2 := each class methods
-				select: [ :each2 | each2 selector beginsWith: 'imageBank' ].
+				select: [ :each2 | each2 selector beginsWith: 'image' ].
 			list
 				addAll:
 					(list2
@@ -236,7 +236,7 @@ ImageEditorCommands >> saveItem [
 			ret
 				ifNotNil: [ app
 						saveImageClass: (list at: ret)
-						selector: ('imageBank' , app imageNo asString) asSymbol ] ]
+						selector: ('image' , app imageNo asString) asSymbol ] ]
 ]
 
 { #category : #api }

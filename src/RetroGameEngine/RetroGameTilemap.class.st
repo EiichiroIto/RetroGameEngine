@@ -1,46 +1,46 @@
 Class {
-	#name : #RetroGameTileMap,
+	#name : #RetroGameTilemap,
 	#superclass : #Object,
 	#instVars : [
 		'array',
-		'imageBank',
-		'extent'
+		'extent',
+		'imageNo'
 	],
 	#category : #'RetroGameEngine-Core'
 }
 
 { #category : #accessing }
-RetroGameTileMap >> array [
+RetroGameTilemap >> array [
 	^ array
 ]
 
 { #category : #accessing }
-RetroGameTileMap >> array: anObject [
+RetroGameTilemap >> array: anObject [
 	array := anObject
 ]
 
 { #category : #accessing }
-RetroGameTileMap >> extent [
+RetroGameTilemap >> extent [
 	^ extent
 ]
 
 { #category : #accessing }
-RetroGameTileMap >> extent: anObject [
+RetroGameTilemap >> extent: anObject [
 	extent := anObject
 ]
 
 { #category : #accessing }
-RetroGameTileMap >> imageBank [
-	^ imageBank
+RetroGameTilemap >> imageNo [
+	^ imageNo
 ]
 
 { #category : #accessing }
-RetroGameTileMap >> imageBank: anObject [
-	imageBank := anObject
+RetroGameTilemap >> imageNo: anObject [
+	imageNo := anObject
 ]
 
 { #category : #api }
-RetroGameTileMap >> importPairsFrom: aStream at: aPoint [
+RetroGameTilemap >> importPairsFrom: aStream at: aPoint [
 	| index x y |
 	index := self indexOf: aPoint.
 	[ aStream atEnd ]
@@ -55,7 +55,7 @@ RetroGameTileMap >> importPairsFrom: aStream at: aPoint [
 ]
 
 { #category : #api }
-RetroGameTileMap >> importString: aString at: aPoint [
+RetroGameTilemap >> importString: aString at: aPoint [
 	| pos |
 	pos := aPoint.
 	aString
@@ -65,7 +65,7 @@ RetroGameTileMap >> importString: aString at: aPoint [
 ]
 
 { #category : #api }
-RetroGameTileMap >> importStrings: aCollection at: aPoint [
+RetroGameTilemap >> importStrings: aCollection at: aPoint [
 	| pos |
 	pos := aPoint.
 	aCollection
@@ -75,17 +75,17 @@ RetroGameTileMap >> importStrings: aCollection at: aPoint [
 ]
 
 { #category : #private }
-RetroGameTileMap >> indexOf: aPoint [
+RetroGameTilemap >> indexOf: aPoint [
 	^ (aPoint y truncated * extent x + aPoint x truncated) * 2 + 1
 ]
 
 { #category : #api }
-RetroGameTileMap >> init [
+RetroGameTilemap >> init [
 	array := ByteArray new: extent x * extent y * 2
 ]
 
 { #category : #api }
-RetroGameTileMap >> pairAt: aPoint [
+RetroGameTilemap >> pairAt: aPoint [
 	| index |
 	((aPoint x between: 0 and: extent x - 1)
 		and: [ aPoint y between: 0 and: extent y - 1 ])

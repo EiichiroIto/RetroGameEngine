@@ -151,20 +151,20 @@ RetroGameEngineTest >> testHeight [
 ]
 
 { #category : #test }
-RetroGameEngineTest >> testImageBank [
+RetroGameEngineTest >> testImageNo [
 	| game |
 	game := self newEngine.
-	self assert: (game imageBank: 0) identicalTo: game imageBanks first.
-	self assert: (game imageBank: 2) identicalTo: game imageBanks last
+	self assert: (game imageNo: 0) identicalTo: game images first.
+	self assert: (game imageNo: 2) identicalTo: game images last
 ]
 
 { #category : #test }
-RetroGameEngineTest >> testImageBanks [
+RetroGameEngineTest >> testImages [
 	| game |
 	game := self newEngine.
-	self assert: game imageBanks isArray.
-	self assert: game imageBanks size equals: 3.
-	self assert: (game imageBanks first isKindOf: RetroGameImage)
+	self assert: game images isArray.
+	self assert: game images size equals: 3.
+	self assert: (game images first isKindOf: RetroGameImage)
 ]
 
 { #category : #test }
@@ -302,13 +302,13 @@ RetroGameEngineTest >> testSetupColors [
 ]
 
 { #category : #test }
-RetroGameEngineTest >> testSetupImageBanks [
-	self testImageBanks
+RetroGameEngineTest >> testSetupImages [
+	self testImages
 ]
 
 { #category : #test }
-RetroGameEngineTest >> testSetupTileMaps [
-	self testTileMaps
+RetroGameEngineTest >> testSetupTilemaps [
+	self testTilemaps
 ]
 
 { #category : #test }
@@ -344,20 +344,20 @@ RetroGameEngineTest >> testTextAtColor [
 ]
 
 { #category : #test }
-RetroGameEngineTest >> testTileMap [
+RetroGameEngineTest >> testTilemap [
 	| game |
 	game := self newEngine.
-	self assert: (game tileMap: 0) identicalTo: game tileMaps first.
-	self assert: (game tileMap: 7) identicalTo: game tileMaps last
+	self assert: (game tilemap: 0) identicalTo: game tilemaps first.
+	self assert: (game tilemap: 7) identicalTo: game tilemaps last
 ]
 
 { #category : #test }
-RetroGameEngineTest >> testTileMaps [
+RetroGameEngineTest >> testTilemaps [
 	| game |
 	game := self newEngine.
-	self assert: game tileMaps isArray.
-	self assert: game tileMaps size equals: 8.
-	self assert: (game tileMaps first isKindOf: RetroGameTileMap)
+	self assert: game tilemaps isArray.
+	self assert: game tilemaps size equals: 8.
+	self assert: (game tilemaps first isKindOf: RetroGameTilemap)
 ]
 
 { #category : #test }

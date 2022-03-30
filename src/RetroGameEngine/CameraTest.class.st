@@ -21,7 +21,7 @@ CameraTest class >> cat16x16 [
 ]
 
 { #category : #resources }
-CameraTest class >> tileMap0 [
+CameraTest class >> tilemap0 [
 	^ #('0201 0000 0200 0400 0100 0000 0003 0103 0203 0000 0002'
 	    '0202 0300 0001 0101 0201 0300 0000 0100 0200 0300 0003')
 ]
@@ -55,7 +55,7 @@ CameraTest >> draw [
 	self drawTestCircle: 6 @ 61.
 	self drawTestCircleFrame: 106 @ 61.
 	self drawTestBlt: 6 @ 88.
-	self drawTestBltTileMap: 106 @ 88.
+	self drawTestBltTilemap: 106 @ 88.
 	self drawTestText: 6 @ 124.
 	self drawTestPalette2: 106 @ 124
 ]
@@ -104,7 +104,7 @@ CameraTest >> drawTestBlt: aPoint [
 ]
 
 { #category : #private }
-CameraTest >> drawTestBltTileMap: aPoint [
+CameraTest >> drawTestBltTilemap: aPoint [
 	engine
 		text: 'bltm(x,y,tm,u,v,
      w,h,[colkey])'
@@ -112,7 +112,7 @@ CameraTest >> drawTestBltTileMap: aPoint [
 		color: 7.
 	engine
 		blt: aPoint + (0 @ 15)
-		tileMapNo: 0
+		tilemapNo: 0
 		at: 0 @ 0
 		extent: 88 @ 16
 		transparentColor: 2
@@ -247,11 +247,11 @@ CameraTest >> init [
 		title: 'Camera Test';
 		init.
 	engine showMouse: true.
-	(engine imageBank: 0) importForm: self class cat16x16 at: 0 @ 0.
-	(engine imageBank: 1) importForm: self class tileset24x32 at: 0 @ 0.
-	(engine tileMap: 0)
-		importStrings: self class tileMap0 at: 0 @ 0;
-		imageBank: 1.
+	(engine imageNo: 0) importForm: self class cat16x16 at: 0 @ 0.
+	(engine imageNo: 1) importForm: self class tileset24x32 at: 0 @ 0.
+	(engine tilemap: 0)
+		importStrings: self class tilemap0 at: 0 @ 0;
+		imageNo: 1.
 	palTestIsEnabled := false.
 	cameraTestIsEnabled := false
 ]

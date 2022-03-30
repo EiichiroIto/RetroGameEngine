@@ -4,13 +4,13 @@ Class {
 	#instVars : [
 		'screen',
 		'inputs',
-		'imageBanks',
-		'tileMaps',
 		'title',
 		'frameCount',
 		'palette',
 		'random',
-		'camera'
+		'camera',
+		'tilemaps',
+		'images'
 	],
 	#category : #'RetroGameEngine-Core'
 }
@@ -68,18 +68,18 @@ RetroGameEngine >> blt: aPoint image: anImage at: aPoint3 extent: aPoint4 transp
 { #category : #'screen api' }
 RetroGameEngine >> blt: aPoint imageNo: anInteger at: aPoint3 extent: aPoint4 transparentColor: anIntegerOrNil [
 	| image |
-	image := imageBanks at: anInteger + 1.
+	image := images at: anInteger + 1.
 	self blt: aPoint image: image at: aPoint3 extent: aPoint4 transparentColor: anIntegerOrNil
 ]
 
 { #category : #'screen api' }
-RetroGameEngine >> blt: aPoint tileMap: aTileMap at: aPoint3 extent: aPoint4 transparentColor: anIntegerOrNil [
+RetroGameEngine >> blt: aPoint tilemap: aTileMap at: aPoint3 extent: aPoint4 transparentColor: anIntegerOrNil [
 	| tileMapPoint tileMapExtent image pos |
 	tileMapPoint := aPoint3 // 8.
 	tileMapExtent := (aPoint4 abs / 8) ceiling.
 	pos := aPoint3 \\ 8.
-	image := (self imageBank: aTileMap imageBank)
-		buildImageOfTileMap: aTileMap
+	image := (self imageNo: aTileMap imageNo)
+		buildImageOfTilemap: aTileMap
 		at: tileMapPoint
 		extent: tileMapExtent.
 	RetroGameBitBlt new
@@ -96,12 +96,12 @@ RetroGameEngine >> blt: aPoint tileMap: aTileMap at: aPoint3 extent: aPoint4 tra
 ]
 
 { #category : #'screen api' }
-RetroGameEngine >> blt: aPoint tileMapNo: anInteger at: aPoint3 extent: aPoint4 transparentColor: anIntegerOrNil [
+RetroGameEngine >> blt: aPoint tilemapNo: anInteger at: aPoint3 extent: aPoint4 transparentColor: anIntegerOrNil [
 	| tileMap |
-	tileMap := self tileMap: anInteger.
+	tileMap := self tilemap: anInteger.
 	self
 		blt: aPoint
-		tileMap: tileMap
+		tilemap: tileMap
 		at: aPoint3
 		extent: aPoint4
 		transparentColor: anIntegerOrNil
@@ -252,18 +252,18 @@ RetroGameEngine >> height [
 ]
 
 { #category : #api }
-RetroGameEngine >> imageBank: anInteger [
-	^ imageBanks at: anInteger + 1
+RetroGameEngine >> imageNo: anInteger [
+	^ images at: anInteger + 1
 ]
 
 { #category : #accessing }
-RetroGameEngine >> imageBanks [
-	^ imageBanks
+RetroGameEngine >> images [
+	^ images
 ]
 
 { #category : #accessing }
-RetroGameEngine >> imageBanks: anObject [
-	imageBanks := anObject
+RetroGameEngine >> images: anObject [
+	images := anObject
 ]
 
 { #category : #api }
@@ -275,12 +275,12 @@ RetroGameEngine >> incrementFrameCount [
 RetroGameEngine >> init [
 	screen init.
 	inputs init.
-	imageBanks
+	images
 		do: [ :each | 
 			each
 				colors: screen colors;
 				init ].
-	tileMaps
+	tilemaps
 		do: [ :each | 
 			each
 				extent: screen extent;
@@ -295,8 +295,8 @@ RetroGameEngine >> initialize [
 	random := SharedRandom globalGenerator.
 	self setupColors.
 	self resetPalette.
-	self setupImageBanks.
-	self setupTileMaps.
+	self setupImages.
+	self setupTilemaps.
 	self resetCamera
 ]
 
@@ -469,14 +469,14 @@ RetroGameEngine >> setupColors [
 ]
 
 { #category : #private }
-RetroGameEngine >> setupImageBanks [
-	imageBanks := (Array new: 3)
+RetroGameEngine >> setupImages [
+	images := (Array new: 3)
 		collect: [ :each | RetroGameImage new ]
 ]
 
 { #category : #private }
-RetroGameEngine >> setupTileMaps [
-	tileMaps := (Array new: 8) collect: [ :each | RetroGameTileMap new ]
+RetroGameEngine >> setupTilemaps [
+	tilemaps := (Array new: 8) collect: [ :each | RetroGameTilemap new ]
 ]
 
 { #category : #api }
@@ -509,18 +509,18 @@ RetroGameEngine >> text: aString at: aPoint color: anInteger [
 ]
 
 { #category : #api }
-RetroGameEngine >> tileMap: anInteger [
-	^ tileMaps at: anInteger + 1
+RetroGameEngine >> tilemap: anInteger [
+	^ tilemaps at: anInteger + 1
 ]
 
 { #category : #accessing }
-RetroGameEngine >> tileMaps [
-	^ tileMaps
+RetroGameEngine >> tilemaps [
+	^ tilemaps
 ]
 
 { #category : #accessing }
-RetroGameEngine >> tileMaps: anObject [
-	tileMaps := anObject
+RetroGameEngine >> tilemaps: anObject [
+	tilemaps := anObject
 ]
 
 { #category : #accessing }

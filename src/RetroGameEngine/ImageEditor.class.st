@@ -15,7 +15,7 @@ ImageEditor class >> commandsIndex [
 ]
 
 { #category : #resources }
-ImageEditor class >> imageBank0 [
+ImageEditor class >> image0 [
 	^ 'D0D0D0D0DDDD0000DDDDDDD0DDDDDDD000DDD00000DDD000000DD000DDDDD0DDDDD0DDDDD0DDDDD0
 00000000DDD0D000D00000D0DDDDDDD00D000D000DDDDD00000DD000DDD0D0D0DDD0DD0DD0D000D0
 D00000D0DD000D00D00000D0DDDDDDD0D00000D0DDDDDDD00DDDDDD0D000D0D000D0DD0DD0DD0DD0
@@ -201,7 +201,7 @@ ImageEditor >> init [
 		at: self class viewerHScrollbarIndex put: self newHScrollbar;
 		at: self class viewerVScrollbarIndex put: self newVScrollbar.
 	self setupScrollbar.
-	(engine imageBank: 0) importString: self class imageBank0 at: 0 @ 0.
+	(engine imageNo: 0) importString: self class image0 at: 0 @ 0.
 	self resetImages.
 	"(self imageAt: 0) importString: Sample02 imageBank0 at: 0 @ 0"
 ]
@@ -210,7 +210,7 @@ ImageEditor >> init [
 ImageEditor >> loadImageClass: aClass [
 	| selector |
 	1 to: self numImages do: [ :each | 
-		selector := ('imageBank' , (each - 1) asString) asSymbol.
+		selector := ('image' , (each - 1) asString) asSymbol.
 		(aClass respondsTo: selector)
 			ifTrue:
 				[ (images at: each) importString: (aClass perform: selector) at: 0 @ 0 ]

@@ -2,20 +2,20 @@
 A RetroGameTileMapTest is a test class for testing the behavior of RetroGameTileMap
 "
 Class {
-	#name : #RetroGameTileMapTest,
+	#name : #RetroGameTilemapTest,
 	#superclass : #TestCase,
 	#category : #'RetroGameEngine-Tests'
 }
 
 { #category : #private }
-RetroGameTileMapTest >> newTileMap [
-	^ RetroGameTileMap new
+RetroGameTilemapTest >> newTilemap [
+	^ RetroGameTilemap new
 ]
 
 { #category : #test }
-RetroGameTileMapTest >> testArray [
+RetroGameTilemapTest >> testArray [
 	| tileMap a |
-	tileMap := self newTileMap.
+	tileMap := self newTilemap.
 	self assert: tileMap array isNil.
 	a := Array new: 12.
 	tileMap array: a.
@@ -23,29 +23,29 @@ RetroGameTileMapTest >> testArray [
 ]
 
 { #category : #test }
-RetroGameTileMapTest >> testExtent [
+RetroGameTilemapTest >> testExtent [
 	| tileMap |
-	tileMap := self newTileMap.
+	tileMap := self newTilemap.
 	self assert: tileMap extent isNil.
 	tileMap extent: 1 @ 2.
 	self assert: tileMap extent equals: 1 @ 2
 ]
 
 { #category : #test }
-RetroGameTileMapTest >> testImageBank [
+RetroGameTilemapTest >> testImageNo [
 	| tileMap |
-	tileMap := self newTileMap.
-	self assert: tileMap imageBank isNil.
-	tileMap imageBank: 1.
-	self assert: tileMap imageBank equals: 1.
-	tileMap imageBank: 2.
-	self assert: tileMap imageBank equals: 2
+	tileMap := self newTilemap.
+	self assert: tileMap imageNo isNil.
+	tileMap imageNo: 1.
+	self assert: tileMap imageNo equals: 1.
+	tileMap imageNo: 2.
+	self assert: tileMap imageNo equals: 2
 ]
 
 { #category : #test }
-RetroGameTileMapTest >> testImportPairsFromAt [
+RetroGameTilemapTest >> testImportPairsFromAt [
 	| tileMap s |
-	tileMap := self newTileMap.
+	tileMap := self newTilemap.
 	tileMap extent: 10 @ 10; init.
 	s := ReadStream on: '1234'.
 	tileMap importPairsFrom: s at: 0 @ 0.
@@ -61,9 +61,9 @@ RetroGameTileMapTest >> testImportPairsFromAt [
 ]
 
 { #category : #test }
-RetroGameTileMapTest >> testImportStringAt [
+RetroGameTilemapTest >> testImportStringAt [
 	| tileMap |
-	tileMap := self newTileMap.
+	tileMap := self newTilemap.
 	tileMap
 		extent: 256 @ 256;
 		init.
@@ -74,9 +74,9 @@ RetroGameTileMapTest >> testImportStringAt [
 ]
 
 { #category : #test }
-RetroGameTileMapTest >> testImportStringsAt [
+RetroGameTilemapTest >> testImportStringsAt [
 	| tileMap |
-	tileMap := self newTileMap.
+	tileMap := self newTilemap.
 	tileMap
 		extent: 11 @ 2;
 		init.
@@ -93,9 +93,9 @@ RetroGameTileMapTest >> testImportStringsAt [
 ]
 
 { #category : #test }
-RetroGameTileMapTest >> testIndexOf [
+RetroGameTilemapTest >> testIndexOf [
 	| tileMap |
-	tileMap := self newTileMap.
+	tileMap := self newTilemap.
 	tileMap extent: 10 @ 10.
 	self assert: (tileMap indexOf: 0 @ 0) equals: 1.
 	self assert: (tileMap indexOf: 1 @ 0) equals: 3.
@@ -104,9 +104,9 @@ RetroGameTileMapTest >> testIndexOf [
 ]
 
 { #category : #test }
-RetroGameTileMapTest >> testInit [
+RetroGameTilemapTest >> testInit [
 	| tileMap |
-	tileMap := self newTileMap.
+	tileMap := self newTilemap.
 	tileMap
 		extent: 10 @ 10;
 		init.
@@ -115,9 +115,9 @@ RetroGameTileMapTest >> testInit [
 ]
 
 { #category : #test }
-RetroGameTileMapTest >> testPairAt [
+RetroGameTilemapTest >> testPairAt [
 	| tileMap |
-	tileMap := self newTileMap.
+	tileMap := self newTilemap.
 	tileMap
 		extent: 11 @ 2;
 		init.

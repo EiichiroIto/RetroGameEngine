@@ -13,8 +13,8 @@ RetroGameImageTest >> newImage [
 ]
 
 { #category : #private }
-RetroGameImageTest >> newTileMap [
-	^ RetroGameTileMap new
+RetroGameImageTest >> newTilemap [
+	^ RetroGameTilemap new
 ]
 
 { #category : #test }
@@ -90,15 +90,15 @@ RetroGameImageTest >> testBothEndsOfHeight [
 ]
 
 { #category : #test }
-RetroGameImageTest >> testBuildImageOfTileMapAtExtent [
+RetroGameImageTest >> testBuildImageOfTilemapAtExtent [
 	| image tileMap dest |
 	image := self newImage
 		extent: 16 @ 16;
 		array: (0 to: 255) asByteArray.
-	tileMap := self newTileMap
+	tileMap := self newTilemap
 		extent: 2 @ 2;
 		array: #[ 1 1 0 0 1 0 0 1].
-	dest := image buildImageOfTileMap: tileMap at: 0 @ 0 extent: 1 @ 1.
+	dest := image buildImageOfTilemap: tileMap at: 0 @ 0 extent: 1 @ 1.
 	self assert: dest extent equals: 8 @ 8.
 	self assertCollection: dest array equals: 
 #[136 137 138 139 140 141 142 143

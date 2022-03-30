@@ -21,7 +21,7 @@ Class {
 }
 
 { #category : #resources }
-Sample02 class >> imageBank0 [
+Sample02 class >> image0 [
 	^ 'cccccc1111111ccccccccccccccccccccccccccc111ccccccccccccccccccccccccccc11111ccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
 ccccc19999991ccccccccc111111ccccccccccc1bbb1ccccccccccccccccccccccccc1bbbbb1cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
 cccc19999991ccccccccc19999991ccccccccccc1b1cccccccccccccccccccccccccc111b111cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
@@ -367,7 +367,7 @@ Sample02 >> init [
 		extent: 160 @ 120;
 		title: 'Jump Game';
 		init.
-	(engine imageBank: 0) importString: self class imageBank0 at: 0 @ 0.
+	(engine imageNo: 0) importString: self class image0 at: 0 @ 0.
 	score := 0.
 	playerPosition := 72 @ -16.
 	playerDy := 0.

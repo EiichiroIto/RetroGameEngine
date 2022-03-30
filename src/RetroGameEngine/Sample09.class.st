@@ -98,7 +98,7 @@ Sample09 >> init [
 		extent: 120 @ 160;
 		title: 'Shooter';
 		init.
-	(engine imageBank: 0)
+	(engine imageNo: 0)
 		importString:
 			'00c00c00
 0c7007c0
@@ -109,7 +109,7 @@ c703b07c
 85c77c58
 0c0880c0'
 		at: 0 @ 0.
-	(engine imageBank: 0)
+	(engine imageNo: 0)
 		importString:
 			'00088000
 00ee1200

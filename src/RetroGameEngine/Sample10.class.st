@@ -183,13 +183,13 @@ Sample10 >> draw [
 	engine resetCamera.
 	engine
 		blt: 0 @ 0
-		tileMapNo: 0
+		tilemapNo: 0
 		at: (scrollX // 4 \\ 128) @ 128
 		extent: 128 @ 128
 		transparentColor: nil.
 	engine
 		blt: 0 @ 0
-		tileMapNo: 0
+		tilemapNo: 0
 		at: scrollX @ 0
 		extent: 128 @ 128
 		transparentColor: self class transparentColor.
@@ -219,7 +219,7 @@ Sample10 >> gameOver [
 
 { #category : #private }
 Sample10 >> getTile: aPoint [
-	^ (engine tileMap: 0) pairAt: aPoint
+	^ (engine tilemap: 0) pairAt: aPoint
 ]
 
 { #category : #api }
@@ -228,11 +228,11 @@ Sample10 >> init [
 		extent: 128 @ 128;
 		title: 'Platformer';
 		init.
-	(engine imageBank: 0) importString: self class image0 at: 0 @ 0.
-	(engine tileMap: 0)
+	(engine imageNo: 0) importString: self class image0 at: 0 @ 0.
+	(engine tilemap: 0)
 		importString: self class tile0 at: 0 @ 0;
-		imageBank: 0.
-	(engine imageBank: 0)
+		imageNo: 0.
+	(engine imageNo: 0)
 		rect: 0 @ 8
 		extent: 24 @ 8
 		color: self class transparentColor.
