@@ -1,10 +1,8 @@
 Class {
 	#name : #ImageEditor,
-	#superclass : #RetroGameApp,
+	#superclass : #RetroGameTool,
 	#instVars : [
-		'images',
-		'controls',
-		'dialog'
+		'images'
 	],
 	#category : #'RetroGameEngine-ImageEditor'
 }
@@ -76,63 +74,14 @@ ImageEditor >> commands [
 	^ controls at: self class commandsIndex
 ]
 
-{ #category : #private }
-ImageEditor >> compactImageFrom: aString [
-	| list count size |
-	list := aString lines.
-	count := self substantialLinesOf: list.
-	list := list copyFrom: 1 to: count.
-	size := (list collect: [ :each | self substantialCharactersOf: each ])
-		max.
-	size := (size + 7) // 8 * 8.
-	^ list
-		collect: [ :each | 
-			each size >= size
-				ifTrue: [ each copyFrom: 1 to: size ]
-				ifFalse: [ each , (String new: size - each size withAll: $0) ] ]
-]
-
-{ #category : #api }
-ImageEditor >> confirm: aString thenDo: aBlock [
-	dialog := ImageEditorYesNoDialog new
-		init: self;
-		message: aString;
-		pendingAction: [ :ret | 
-			dialog := nil.
-			aBlock cull: ret ];
-		yourself
-]
-
-{ #category : #accessing }
-ImageEditor >> controls [
-	^ controls
-]
-
-{ #category : #accessing }
-ImageEditor >> controls: anObject [
-	controls := anObject
-]
-
 { #category : #api }
 ImageEditor >> currentImage [
 	^ self imageAt: self imageNo
 ]
 
-{ #category : #accessing }
-ImageEditor >> dialog [
-	^ dialog
-]
-
-{ #category : #accessing }
-ImageEditor >> dialog: anObject [
-	dialog := anObject
-]
-
 { #category : #api }
 ImageEditor >> draw [
-	engine cls: 0.
-	controls do: #draw.
-	dialog ifNotNil: #draw.
+	super draw.
 	self drawStatus
 ]
 
@@ -201,7 +150,7 @@ ImageEditor >> init [
 		at: self class viewerHScrollbarIndex put: self newHScrollbar;
 		at: self class viewerVScrollbarIndex put: self newVScrollbar.
 	self setupScrollbar.
-	(engine imageNo: 0) importString: self class image0 at: 0 @ 0.
+	(engine imageAt: 0) importString: self class image0 at: 0 @ 0.
 	self resetImages.
 	"(self imageAt: 0) importString: Sample02 imageBank0 at: 0 @ 0"
 ]
@@ -221,6 +170,11 @@ ImageEditor >> loadImageClass: aClass [
 { #category : #api }
 ImageEditor >> loadImageClass: aClass selector: aSymbol [
 	self currentImage importString: (aClass perform: aSymbol) at: 0 @ 0
+]
+
+{ #category : #api }
+ImageEditor >> methodSelectorFor: anInteger [
+	^ ('image' , anInteger asString) asSymbol
 ]
 
 { #category : #private }
@@ -313,9 +267,11 @@ ImageEditor >> resetImages [
 ]
 
 { #category : #api }
-ImageEditor >> saveImageClass: aClass selector: aSymbol [
+ImageEditor >> saveImage: anImage class: aClass selector: aSymbol [
 	| list stream |
-	list := self compactImageFrom: self currentImage arrayString.
+	list := self class compactArrayStringFrom: anImage arrayString.
+	list isEmpty
+		ifTrue: [ ^ self ].
 	stream := WriteStream on: String new.
 	stream
 		nextPutAll: aSymbol;
@@ -331,14 +287,12 @@ ImageEditor >> saveImageClass: aClass selector: aSymbol [
 ]
 
 { #category : #api }
-ImageEditor >> select: aCollection thenDo: aBlock [
-	dialog := ImageEditorListDialog new
-		init: self;
-		list: aCollection;
-		pendingAction: [ :ret | 
-			dialog := nil.
-			aBlock cull: ret ];
-		yourself
+ImageEditor >> saveImageClass: aClass [
+	0 to: self numImages - 1 do: [ :each | 
+		self
+			saveImage: (self imageAt: each)
+			class: aClass
+			selector: (self methodSelectorFor: each) ]
 ]
 
 { #category : #api }
@@ -370,22 +324,6 @@ ImageEditor >> setupScrollbar [
 		updateBar: #(100 0 10).
 ]
 
-{ #category : #private }
-ImageEditor >> substantialCharactersOf: aString [
-	aString size to: 1 by: -1 do: [ :each | 
-		(aString at: each) ~= $0
-			ifTrue: [ ^ each ] ].
-	^ 0
-]
-
-{ #category : #private }
-ImageEditor >> substantialLinesOf: anArray [
-	anArray size to: 1 by: -1 do: [ :each | 
-		((anArray at: each) allSatisfy: [ :c | c = $0 ])
-			ifFalse: [ ^ each ] ].
-	^ 0
-]
-
 { #category : #api }
 ImageEditor >> toolNo [
 	^ self tools toolNo
@@ -394,12 +332,6 @@ ImageEditor >> toolNo [
 { #category : #private }
 ImageEditor >> tools [
 	^ controls at: self class toolsIndex
-]
-
-{ #category : #api }
-ImageEditor >> update [
-	dialog ifNotNil: [ ^ dialog update ].
-	controls do: #update
 ]
 
 { #category : #private }

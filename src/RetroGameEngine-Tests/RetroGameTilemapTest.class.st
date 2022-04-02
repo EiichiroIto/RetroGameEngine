@@ -23,6 +23,23 @@ RetroGameTilemapTest >> testArray [
 ]
 
 { #category : #test }
+RetroGameTilemapTest >> testArrayString [
+	| tileMap |
+	tileMap := self newTilemap.
+	tileMap
+		extent: 11 @ 2;
+		init.
+	tileMap
+		importStrings:
+			#('0201 0000 0200 0400 0100 0000 0003 0103 0203 0000 0002'
+			  '0202 0300 0001 0101 0201 0300 0000 0100 0200 0300 0003')
+		at: 0 @ 0.
+	self assert: tileMap arrayString equals: '02010000020004000100000000030103020300000002
+02020300000101010201030000000100020003000003
+'
+]
+
+{ #category : #test }
 RetroGameTilemapTest >> testExtent [
 	| tileMap |
 	tileMap := self newTilemap.
@@ -115,7 +132,7 @@ RetroGameTilemapTest >> testInit [
 ]
 
 { #category : #test }
-RetroGameTilemapTest >> testPairAt [
+RetroGameTilemapTest >> testTileAt [
 	| tileMap |
 	tileMap := self newTilemap.
 	tileMap
@@ -126,10 +143,28 @@ RetroGameTilemapTest >> testPairAt [
 			#('0201 0000 0200 0400 0100 0000 0003 0103 0203 0000 0002'
 			  '0202 0300 0001 0101 0201 0300 0000 0100 0200 0300 0003')
 		at: 0 @ 0.
-	self assertCollection: (tileMap pairAt: 0 @ 0) equals: 2 @ 1.
-	self assertCollection: (tileMap pairAt: 10 @ 0) equals: 0 @ 2.
-	self assertCollection: (tileMap pairAt: 0 @ 1) equals: 2 @ 2.
-	self assertCollection: (tileMap pairAt: 10 @ 1) equals: 0 @ 3.
-	self assertCollection: (tileMap pairAt: -1 @ -1) equals: 0 @ 0.
-	self assertCollection: (tileMap pairAt: 1000 @ 1000) equals: 0 @ 0
+	self assertCollection: (tileMap tileAt: 0 @ 0) equals: 2 @ 1.
+	self assertCollection: (tileMap tileAt: 10 @ 0) equals: 0 @ 2.
+	self assertCollection: (tileMap tileAt: 0 @ 1) equals: 2 @ 2.
+	self assertCollection: (tileMap tileAt: 10 @ 1) equals: 0 @ 3.
+	self assertCollection: (tileMap tileAt: -1 @ -1) equals: 0 @ 0.
+	self assertCollection: (tileMap tileAt: 1000 @ 1000) equals: 0 @ 0
+]
+
+{ #category : #test }
+RetroGameTilemapTest >> testTileAtPut [
+	| tileMap |
+	tileMap := self newTilemap.
+	tileMap
+		extent: 6 @ 2;
+		init.
+	tileMap tileAt: 0 @ 0 put: 2 @ 1.
+	tileMap tileAt: 5 @ 0 put: 0 @ 2.
+	tileMap tileAt: 0 @ 1 put: 2 @ 2.
+	tileMap tileAt: 5 @ 1 put: 0 @ 3.
+	tileMap tileAt: -1 @ -1 put: 0 @ 0.
+	tileMap tileAt: 1000 @ 1000 put: 0 @ 0.
+	self assert: tileMap arrayString equals: '020100000000000000000002
+020200000000000000000003
+'
 ]

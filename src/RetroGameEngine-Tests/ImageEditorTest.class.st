@@ -39,31 +39,6 @@ ImageEditorTest >> testCommandsIndex [
 ]
 
 { #category : #test }
-ImageEditorTest >> testCompactImageFrom [
-	| app r |
-	app := self newApp.
-	r := app compactImageFrom: '00000000
-0000000010000000
-000000001000000000000000
-00000000
-0000000000000000'.
-	self assertCollection: r equals: #(
-'0000000000000000'
-'0000000010000000'
-'0000000010000000')
-]
-
-{ #category : #test }
-ImageEditorTest >> testControls [
-	| editor a |
-	editor := self newApp.
-	self assert: editor controls isNil.
-	a := Array with: 5.
-	editor controls: a.
-	self assert: editor controls identicalTo: a
-]
-
-{ #category : #test }
 ImageEditorTest >> testCurrentImage [
 	| editor |
 	editor := self newApp.
@@ -71,16 +46,6 @@ ImageEditorTest >> testCurrentImage [
 	self assert: editor currentImage identicalTo: editor images first.
 	editor selector imageNo: 2.
 	self assert: editor currentImage equals: editor images third
-]
-
-{ #category : #test }
-ImageEditorTest >> testDialog [
-	| editor d |
-	editor := self newApp.
-	self assert: editor dialog isNil.
-	d := ImageEditorYesNoDialog new.
-	editor dialog: d.
-	self assert: editor dialog identicalTo: d
 ]
 
 { #category : #test }
@@ -134,6 +99,15 @@ ImageEditorTest >> testInit [
 ]
 
 { #category : #test }
+ImageEditorTest >> testMethodSelectorFor [
+	| app |
+	app := self newApp.
+	self assert: (app methodSelectorFor: 0) equals: #image0.
+	self assert: (app methodSelectorFor: 1) equals: #image1.
+	self assert: (app methodSelectorFor: 2) equals: #image2
+]
+
+{ #category : #test }
 ImageEditorTest >> testNewCommands [
 	| editor |
 	editor := self newApp.
@@ -180,6 +154,13 @@ ImageEditorTest >> testNewTools [
 	| editor |
 	editor := self newApp.
 	self assert: (editor newTools isKindOf: ImageEditorTools)
+]
+
+{ #category : #test }
+ImageEditorTest >> testNewVScrollbar [
+	| editor |
+	editor := self newApp.
+	self assert: (editor newVScrollbar isKindOf: ImageEditorVScrollbar)
 ]
 
 { #category : #test }
@@ -283,28 +264,6 @@ ImageEditorTest >> testSelectorIndex [
 ]
 
 { #category : #test }
-ImageEditorTest >> testSubstantialCharactersOf [
-	| app |
-	app := self newApp.
-	self assert: (app substantialCharactersOf: '00000') equals: 0.
-	self assert: (app substantialCharactersOf: '00010') equals: 4.
-	self assert: (app substantialCharactersOf: '12000') equals: 2.
-	self assert: (app substantialCharactersOf: '0000100') equals: 5
-]
-
-{ #category : #test }
-ImageEditorTest >> testSubstantialLinesOf [
-	| app a |
-	app := self newApp.
-	a := #('000000' '000100000' '0000' '0000000').
-	self assert: (app substantialLinesOf: a) equals: 2.
-	a := #('000001' '000100000' '1000' '0000020').
-	self assert: (app substantialLinesOf: a) equals: 4.
-	a := #('000000' '000000000' '0000' '00000000').
-	self assert: (app substantialLinesOf: a) equals: 0
-]
-
-{ #category : #test }
 ImageEditorTest >> testToolNo [
 	| editor |
 	editor := self newApp.
@@ -349,4 +308,13 @@ ImageEditorTest >> testViewerHScrollbar [
 { #category : #test }
 ImageEditorTest >> testViewerIndex [
 	self assert: self newApp class viewerIndex equals: 4
+]
+
+{ #category : #test }
+ImageEditorTest >> testViewerVScrollbar [
+	| editor |
+	editor := self newApp.
+	self should: [ editor viewerVScrollbar ] raise: Error.
+	editor init.
+	self assert: (editor viewerVScrollbar isKindOf: ImageEditorVScrollbar)
 ]

@@ -2,7 +2,8 @@ Class {
 	#name : #ImageEditorSelector,
 	#superclass : #RetroGameObject,
 	#instVars : [
-		'imageNo'
+		'imageNo',
+		'whenImageNoChanged'
 	],
 	#category : #'RetroGameEngine-ImageEditor'
 }
@@ -46,6 +47,11 @@ ImageEditorSelector >> imageNo: anObject [
 ]
 
 { #category : #private }
+ImageEditorSelector >> imageNoChanged [
+	whenImageNoChanged ifNotNil: [ whenImageNoChanged cull: self ]
+]
+
+{ #category : #private }
 ImageEditorSelector >> imageNoPosition [
 	^ position + (44 @ 4)
 ]
@@ -70,7 +76,8 @@ ImageEditorSelector >> minusButtonPosition [
 ImageEditorSelector >> minusClicked [
 	imageNo <= 0
 		ifTrue: [ ^ self ].
-	imageNo := imageNo - 1
+	imageNo := imageNo - 1.
+	self imageNoChanged
 ]
 
 { #category : #private }
@@ -82,7 +89,8 @@ ImageEditorSelector >> plusButtonPosition [
 ImageEditorSelector >> plusClicked [
 	imageNo >= (app numImages - 1)
 		ifTrue: [ ^ self ].
-	imageNo := imageNo + 1
+	imageNo := imageNo + 1.
+	self imageNoChanged
 ]
 
 { #category : #api }
@@ -95,4 +103,14 @@ ImageEditorSelector >> update [
 	((self plusButtonPosition extent: self buttonExtent)
 		containsPoint: app engine mousePosition)
 		ifTrue: [ self plusClicked ]
+]
+
+{ #category : #accessing }
+ImageEditorSelector >> whenImageNoChanged [
+	^ whenImageNoChanged
+]
+
+{ #category : #accessing }
+ImageEditorSelector >> whenImageNoChanged: anObject [
+	whenImageNoChanged := anObject
 ]

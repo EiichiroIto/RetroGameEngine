@@ -3,14 +3,20 @@ Class {
 	#superclass : #RetroGameObject,
 	#instVars : [
 		'cursorPosition',
-		'imageOffset'
+		'imageOffset',
+		'cursorExtent'
 	],
 	#category : #'RetroGameEngine-ImageEditor'
 }
 
 { #category : #constants }
 ImageEditorViewer >> cursorExtent [
-	^ 16 @ 16
+	^ cursorExtent
+]
+
+{ #category : #accessing }
+ImageEditorViewer >> cursorExtent: anObject [
+	cursorExtent := anObject
 ]
 
 { #category : #accessing }
@@ -87,7 +93,8 @@ ImageEditorViewer >> imagePosition [
 ImageEditorViewer >> init: anApp [
 	super init: anApp.
 	imageOffset := 0 @ 0.
-	cursorPosition := 0 @ 0
+	cursorPosition := 0 @ 0.
+	cursorExtent := 16 @ 16
 ]
 
 { #category : #api }
@@ -97,7 +104,7 @@ ImageEditorViewer >> update [
 		ifFalse: [ ^ self ].
 	((position extent: self extent) containsPoint: app engine mousePosition)
 		ifFalse: [ ^ self ].
-	tmp := self cursorExtent // 2.
+	tmp := 8 @ 8.
 	cursorPosition := (app engine mousePosition - position) // tmp * tmp.
 	cursorPosition := cursorPosition max: 0 @ 0.
 	cursorPosition := cursorPosition min: self extent - self cursorExtent

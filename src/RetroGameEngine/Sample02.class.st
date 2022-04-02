@@ -367,7 +367,7 @@ Sample02 >> init [
 		extent: 160 @ 120;
 		title: 'Jump Game';
 		init.
-	(engine imageNo: 0) importString: self class image0 at: 0 @ 0.
+	(engine imageAt: 0) importString: self class image0 at: 0 @ 0.
 	score := 0.
 	playerPosition := 72 @ -16.
 	playerDy := 0.

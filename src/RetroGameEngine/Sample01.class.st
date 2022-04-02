@@ -43,7 +43,7 @@ Sample01 >> init [
 		extent: 160 @ 120;
 		title: 'Hello Pharo';
 		init.
-	(engine imageNo: 0) importForm: self class sampleForm at: 0 @ 0
+	(engine imageAt: 0) importForm: self class sampleForm at: 0 @ 0
 ]
 
 { #category : #api }

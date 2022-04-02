@@ -68,8 +68,13 @@ RetroGameEngine >> blt: aPoint image: anImage at: aPoint3 extent: aPoint4 transp
 { #category : #'screen api' }
 RetroGameEngine >> blt: aPoint imageNo: anInteger at: aPoint3 extent: aPoint4 transparentColor: anIntegerOrNil [
 	| image |
-	image := images at: anInteger + 1.
-	self blt: aPoint image: image at: aPoint3 extent: aPoint4 transparentColor: anIntegerOrNil
+	image := self imageAt: anInteger.
+	self
+		blt: aPoint
+		image: image
+		at: aPoint3
+		extent: aPoint4
+		transparentColor: anIntegerOrNil
 ]
 
 { #category : #'screen api' }
@@ -78,7 +83,7 @@ RetroGameEngine >> blt: aPoint tilemap: aTileMap at: aPoint3 extent: aPoint4 tra
 	tileMapPoint := aPoint3 // 8.
 	tileMapExtent := (aPoint4 abs / 8) ceiling.
 	pos := aPoint3 \\ 8.
-	image := (self imageNo: aTileMap imageNo)
+	image := (self imageAt: aTileMap imageNo)
 		buildImageOfTilemap: aTileMap
 		at: tileMapPoint
 		extent: tileMapExtent.
@@ -98,7 +103,7 @@ RetroGameEngine >> blt: aPoint tilemap: aTileMap at: aPoint3 extent: aPoint4 tra
 { #category : #'screen api' }
 RetroGameEngine >> blt: aPoint tilemapNo: anInteger at: aPoint3 extent: aPoint4 transparentColor: anIntegerOrNil [
 	| tileMap |
-	tileMap := self tilemap: anInteger.
+	tileMap := self tilemapAt: anInteger.
 	self
 		blt: aPoint
 		tilemap: tileMap
@@ -252,7 +257,7 @@ RetroGameEngine >> height [
 ]
 
 { #category : #api }
-RetroGameEngine >> imageNo: anInteger [
+RetroGameEngine >> imageAt: anInteger [
 	^ images at: anInteger + 1
 ]
 
@@ -509,7 +514,7 @@ RetroGameEngine >> text: aString at: aPoint color: anInteger [
 ]
 
 { #category : #api }
-RetroGameEngine >> tilemap: anInteger [
+RetroGameEngine >> tilemapAt: anInteger [
 	^ tilemaps at: anInteger + 1
 ]
 

@@ -22,8 +22,8 @@ CameraTest class >> cat16x16 [
 
 { #category : #resources }
 CameraTest class >> tilemap0 [
-	^ #('0201 0000 0200 0400 0100 0000 0003 0103 0203 0000 0002'
-	    '0202 0300 0001 0101 0201 0300 0000 0100 0200 0300 0003')
+	^ '0201 0000 0200 0400 0100 0000 0003 0103 0203 0000 0002
+0202 0300 0001 0101 0201 0300 0000 0100 0200 0300 0003'
 ]
 
 { #category : #resources }
@@ -247,10 +247,10 @@ CameraTest >> init [
 		title: 'Camera Test';
 		init.
 	engine showMouse: true.
-	(engine imageNo: 0) importForm: self class cat16x16 at: 0 @ 0.
-	(engine imageNo: 1) importForm: self class tileset24x32 at: 0 @ 0.
-	(engine tilemap: 0)
-		importStrings: self class tilemap0 at: 0 @ 0;
+	(engine imageAt: 0) importForm: self class cat16x16 at: 0 @ 0.
+	(engine imageAt: 1) importForm: self class tileset24x32 at: 0 @ 0.
+	(engine tilemapAt: 0)
+		importString: self class tilemap0 at: 0 @ 0;
 		imageNo: 1.
 	palTestIsEnabled := false.
 	cameraTestIsEnabled := false

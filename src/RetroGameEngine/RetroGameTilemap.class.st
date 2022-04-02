@@ -19,6 +19,22 @@ RetroGameTilemap >> array: anObject [
 	array := anObject
 ]
 
+{ #category : #converting }
+RetroGameTilemap >> arrayString [
+	| w index v |
+	array ifNil: [ ^ '' ].
+	w := WriteStream on: String new.
+	index := 1.
+	extent y
+		timesRepeat: [ extent x * 2
+				timesRepeat: [ v := array at: index.
+					w nextPut: (v // 16) asHexDigit.
+					w nextPut: (v \\ 16) asHexDigit.
+					index := index + 1 ].
+			w nextPut: Character cr ].
+	^ w contents
+]
+
 { #category : #accessing }
 RetroGameTilemap >> extent [
 	^ extent
@@ -85,11 +101,23 @@ RetroGameTilemap >> init [
 ]
 
 { #category : #api }
-RetroGameTilemap >> pairAt: aPoint [
+RetroGameTilemap >> tileAt: aPoint [
 	| index |
 	((aPoint x between: 0 and: extent x - 1)
 		and: [ aPoint y between: 0 and: extent y - 1 ])
 		ifFalse: [ ^ 0 @ 0 ].
 	index := self indexOf: aPoint.
 	^ (array at: index) @ (array at: index + 1)
+]
+
+{ #category : #api }
+RetroGameTilemap >> tileAt: aPoint put: aPoint2 [
+	| index |
+	((aPoint x between: 0 and: extent x - 1)
+		and: [ aPoint y between: 0 and: extent y - 1 ])
+		ifFalse: [ ^ self ].
+	index := self indexOf: aPoint.
+	array
+		at: index put: aPoint2 x;
+		at: index + 1 put: aPoint2 y
 ]

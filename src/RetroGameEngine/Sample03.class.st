@@ -267,9 +267,9 @@ Sample03 >> init [
 		title: 'Draw API';
 		init.
 	engine showMouse: true.
-	(engine imageNo: 0) importForm: self class cat16x16 at: 0 @ 0.
-	(engine imageNo: 1) importForm: self class tileset24x32 at: 0 @ 0.
-	(engine tilemap: 0)
+	(engine imageAt: 0) importForm: self class cat16x16 at: 0 @ 0.
+	(engine imageAt: 1) importForm: self class tileset24x32 at: 0 @ 0.
+	(engine tilemapAt: 0)
 		importStrings: self class tilemap0 at: 0 @ 0;
 		imageNo: 1.
 	palTestIsEnabled := false.

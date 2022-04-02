@@ -131,7 +131,7 @@ ImageEditorCommands >> extent [
 { #category : #actions }
 ImageEditorCommands >> load [
 	| list |
-	list := RetroGameApp subclasses.
+	list := RetroGameApp classesHavingImages.
 	list isEmpty
 		ifTrue: [ ^ self ].
 	app
@@ -143,18 +143,7 @@ ImageEditorCommands >> load [
 { #category : #actions }
 ImageEditorCommands >> loadItem [
 	| list |
-	list := OrderedCollection new.
-	RetroGameApp subclasses
-		do: [ :each | 
-			| list2 |
-			list2 := each class methods
-				select: [ :each2 | each2 selector beginsWith: 'image' ].
-			list
-				addAll:
-					(list2
-						collect: [ :each3 | 
-							{each.
-							each3 selector} ]) ].
+	list := RetroGameApp imageClassesAndSelectors.
 	list isEmpty
 		ifTrue: [ ^ self ].
 	app
@@ -221,13 +210,20 @@ ImageEditorCommands >> pasteSelection [
 
 { #category : #actions }
 ImageEditorCommands >> save [
-	
+	| list |
+	list := RetroGameApp concreteClasses.
+	list isEmpty
+		ifTrue: [ ^ self ].
+	app
+		select: (list collect: [ :each | each name ])
+		thenDo:
+			[ :ret | ret ifNotNil: [ app saveImageClass: (list at: ret) ] ]
 ]
 
 { #category : #actions }
 ImageEditorCommands >> saveItem [
 	| list |
-	list := RetroGameApp subclasses.
+	list := RetroGameApp concreteClasses.
 	list isEmpty
 		ifTrue: [ ^ self ].
 	app
@@ -235,8 +231,9 @@ ImageEditorCommands >> saveItem [
 		thenDo: [ :ret | 
 			ret
 				ifNotNil: [ app
-						saveImageClass: (list at: ret)
-						selector: ('image' , app imageNo asString) asSymbol ] ]
+						saveImage: app currentImage
+						class: (list at: ret)
+						selector: (app methodSelectorFor: app imageNo) ] ]
 ]
 
 { #category : #api }

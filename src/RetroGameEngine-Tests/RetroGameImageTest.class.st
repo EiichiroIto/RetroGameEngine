@@ -74,6 +74,18 @@ RetroGameImageTest >> testArrayOf [
 ]
 
 { #category : #test }
+RetroGameImageTest >> testArrayString [
+	| im |
+	im := self newImage.
+	im extent: 5 @ 3.
+	im array: #[1 2 3 4 5 6 7 8 9 10 11 12 13 14 15].
+	self assert: im arrayString equals: '12345
+6789A
+BCDEF
+'
+]
+
+{ #category : #test }
 RetroGameImageTest >> testBothEndsOfHeight [
 	| image r |
 	image := self newImage.

@@ -151,11 +151,11 @@ RetroGameEngineTest >> testHeight [
 ]
 
 { #category : #test }
-RetroGameEngineTest >> testImageNo [
+RetroGameEngineTest >> testImageAt [
 	| game |
 	game := self newEngine.
-	self assert: (game imageNo: 0) identicalTo: game images first.
-	self assert: (game imageNo: 2) identicalTo: game images last
+	self assert: (game imageAt: 0) identicalTo: game images first.
+	self assert: (game imageAt: 2) identicalTo: game images last
 ]
 
 { #category : #test }
@@ -344,11 +344,11 @@ RetroGameEngineTest >> testTextAtColor [
 ]
 
 { #category : #test }
-RetroGameEngineTest >> testTilemap [
+RetroGameEngineTest >> testTilemapAt [
 	| game |
 	game := self newEngine.
-	self assert: (game tilemap: 0) identicalTo: game tilemaps first.
-	self assert: (game tilemap: 7) identicalTo: game tilemaps last
+	self assert: (game tilemapAt: 0) identicalTo: game tilemaps first.
+	self assert: (game tilemapAt: 7) identicalTo: game tilemaps last
 ]
 
 { #category : #test }

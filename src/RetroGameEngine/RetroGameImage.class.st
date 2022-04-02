@@ -112,7 +112,7 @@ RetroGameImage >> arrayOf: aCharacter [
 	^ characters at: aCharacter asciiValue - 31
 ]
 
-{ #category : #accessing }
+{ #category : #converting }
 RetroGameImage >> arrayString [
 	| w index |
 	array ifNil: [ ^ '' ].
@@ -149,7 +149,7 @@ RetroGameImage >> buildImageOfTilemap: aTileMap at: aPoint extent: aPoint4 [
 		init.
 	0 to: aPoint4 y - 1 do: [ :dy | 
 		0 to: aPoint4 x - 1 do: [ :dx | 
-			pair := aTileMap pairAt: aPoint + (dx @ dy).
+			pair := aTileMap tileAt: aPoint + (dx @ dy).
 			RetroGameBitBlt new
 				sourceArray: array;
 				sourceExtent: extent;
@@ -332,7 +332,7 @@ RetroGameImage >> fill: aPoint color: anInteger [
 						into: list ] ]
 ]
 
-{ #category : #api }
+{ #category : #converting }
 RetroGameImage >> form [
 	| arr |
 	array ifNil: [ ^ nil ].

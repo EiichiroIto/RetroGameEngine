@@ -31,7 +31,11 @@ ImageEditorViewerTest >> newObjWithEngine [
 
 { #category : #test }
 ImageEditorViewerTest >> testCursorExtent [
-	self assert: self newObj cursorExtent isPoint
+	| obj |
+	obj := self newObj.
+	self assert: obj cursorExtent isPoint.
+	obj cursorExtent: 1 @ 3.
+	self assert: obj cursorExtent equals: 1 @ 3
 ]
 
 { #category : #test }
@@ -120,4 +124,55 @@ ImageEditorViewerTest >> testImagePosition [
 	obj imageOffset: 1 @ 2.
 	obj cursorPosition: 3 @ 4.
 	self assert: obj imagePosition equals: 4 @ 6
+]
+
+{ #category : #test }
+ImageEditorViewerTest >> testVScroll [
+	| obj r |
+	obj := self newObjWithEngine.
+	obj imageOffset: 10 @ 20.
+	r := obj vScroll: -1.
+	self assert: obj imageOffset equals: 10 @ 19.
+	self assert: r isArray.
+	self assert: r size equals: 3.
+	self assert: r first equals: 256 - 96.
+	self assert: r second equals: 19.
+	self assert: r third equals: 96.
+	obj imageOffset: 10 @ 1.
+	r := obj vScroll: -2.
+	self assert: obj imageOffset equals: 10 @ 0.
+	self assert: r isArray.
+	self assert: r size equals: 3.
+	self assert: r first equals: 256 - 96.
+	self assert: r second equals: 0.
+	self assert: r third equals: 96.
+	obj imageOffset: 20 @ 162.
+	r := obj vScroll: 10.
+	self assert: obj imageOffset equals: 20 @ 160.
+	self assert: r isArray.
+	self assert: r size equals: 3.
+	self assert: r first equals: 256 - 96.
+	self assert: r second equals: 160.
+	self assert: r third equals: 96
+]
+
+{ #category : #test }
+ImageEditorViewerTest >> testVScrollBarIn [
+	| obj r |
+	obj := self newObjWithEngine.
+	obj imageOffset: 10 @ 20.
+	r := obj vScrollBar: 0 in: 100.
+	self assert: obj imageOffset equals: 10 @ 0.
+	self assert: r isArray.
+	self assert: r size equals: 3.
+	self assert: r first equals: 256 - 96.
+	self assert: r second equals: 0.
+	self assert: r third equals: 96.
+	r := obj vScrollBar: 100 in: 100.
+	self assert: obj imageOffset equals: 10 @ 160.
+	self assert: r isArray.
+	self assert: r size equals: 3.
+	self assert: r first equals: 256 - 96.
+	self assert: r second equals: 160.
+	self assert: r third equals: 96
 ]

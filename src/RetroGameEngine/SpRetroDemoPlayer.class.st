@@ -10,7 +10,7 @@ Class {
 		'isRunning',
 		'nextFrameTime'
 	],
-	#category : #'RetroGameEngine-Spec2'
+	#category : #'RetroGameEngine-DemoPlayer'
 }
 
 { #category : #specs }
@@ -49,9 +49,10 @@ SpRetroDemoPlayer >> app: anObject [
 
 { #category : #private }
 SpRetroDemoPlayer >> fileMenu [
-	| m |
+	| list m |
 	m := self newMenu.
-	(RetroGameApp subclasses sort: [ :a :b | a title < b title ])
+	list := RetroGameApp concreteClasses.
+	(list sort: [ :a :b | a title < b title ])
 		do: [ :each | 
 			m
 				addItem: [ :item | 

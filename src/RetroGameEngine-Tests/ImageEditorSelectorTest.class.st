@@ -39,6 +39,20 @@ ImageEditorSelectorTest >> testImageNo [
 ]
 
 { #category : #test }
+ImageEditorSelectorTest >> testImageNoChanged [
+	| obj b x |
+	obj := self newObj.
+	x := nil.
+	b := [ x := 1 ].
+	obj imageNoChanged.
+	self assert: x isNil.
+	obj whenImageNoChanged: b.
+	self assert: x isNil.
+	obj imageNoChanged.
+	self assert: x equals: 1
+]
+
+{ #category : #test }
 ImageEditorSelectorTest >> testImageNoPosition [
 	self assert: self newObj imageNoPosition isPoint
 ]
@@ -84,4 +98,14 @@ ImageEditorSelectorTest >> testPlusClicked [
 	self assert: obj imageNo equals: 2.
 	obj plusClicked.
 	self assert: obj imageNo equals: 2
+]
+
+{ #category : #test }
+ImageEditorSelectorTest >> testWhenImageNoChanged [
+	| obj b |
+	obj := self newObj.
+	self assert: obj whenImageNoChanged isNil.
+	b := [ 1 + 2 ].
+	obj whenImageNoChanged: b.
+	self assert: obj whenImageNoChanged identicalTo: b
 ]
