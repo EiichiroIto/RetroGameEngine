@@ -306,6 +306,11 @@ ImageEditorTest >> testViewerHScrollbar [
 ]
 
 { #category : #test }
+ImageEditorTest >> testViewerHScrollbarIndex [
+	self assert: self newApp class viewerHScrollbarIndex equals: 7
+]
+
+{ #category : #test }
 ImageEditorTest >> testViewerIndex [
 	self assert: self newApp class viewerIndex equals: 4
 ]
@@ -317,4 +322,9 @@ ImageEditorTest >> testViewerVScrollbar [
 	self should: [ editor viewerVScrollbar ] raise: Error.
 	editor init.
 	self assert: (editor viewerVScrollbar isKindOf: ImageEditorVScrollbar)
+]
+
+{ #category : #test }
+ImageEditorTest >> testViewerVScrollbarIndex [
+	self assert: self newApp class viewerVScrollbarIndex equals: 8
 ]

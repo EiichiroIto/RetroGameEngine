@@ -288,7 +288,7 @@ RetroGameEngine >> init [
 	tilemaps
 		do: [ :each | 
 			each
-				extent: screen extent;
+				extent: 256 @ 256;
 				init ]
 ]
 

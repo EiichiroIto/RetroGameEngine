@@ -15,6 +15,11 @@ TilemapEditorTest >> newApp [
 ]
 
 { #category : #test }
+TilemapEditorTest >> testCommandsIndex [
+	self assert: self newApp class commandsIndex equals: 9
+]
+
+{ #category : #test }
 TilemapEditorTest >> testCurrentImage [
 	| app |
 	app := self newApp.
@@ -64,6 +69,11 @@ TilemapEditorTest >> testImageHScrollbar [
 ]
 
 { #category : #test }
+TilemapEditorTest >> testImageHScrollbarIndex [
+	self assert: self newApp class imageHScrollbarIndex equals: 7
+]
+
+{ #category : #test }
 TilemapEditorTest >> testImageNo [
 	| app |
 	app := self newApp.
@@ -85,6 +95,11 @@ TilemapEditorTest >> testImageSelector [
 ]
 
 { #category : #test }
+TilemapEditorTest >> testImageSelectorIndex [
+	self assert: self newApp class imageSelectorIndex equals: 4
+]
+
+{ #category : #test }
 TilemapEditorTest >> testImageVScrollbar [
 	| app |
 	app := self newApp.
@@ -94,12 +109,22 @@ TilemapEditorTest >> testImageVScrollbar [
 ]
 
 { #category : #test }
+TilemapEditorTest >> testImageVScrollbarIndex [
+	self assert: self newApp class imageVScrollbarIndex equals: 8
+]
+
+{ #category : #test }
 TilemapEditorTest >> testImageViewer [
 	| app |
 	app := self newApp.
 	self should: [ app imageViewer ] raise: Error.
 	app init.
 	self assert: (app imageViewer isKindOf: ImageEditorViewer)
+]
+
+{ #category : #test }
+TilemapEditorTest >> testImageViewerIndex [
+	self assert: self newApp class imageViewerIndex equals: 3
 ]
 
 { #category : #test }
@@ -236,6 +261,11 @@ TilemapEditorTest >> testTilemapHScrollbar [
 ]
 
 { #category : #test }
+TilemapEditorTest >> testTilemapHScrollbarIndex [
+	self assert: self newApp class tilemapHScrollbarIndex equals: 5
+]
+
+{ #category : #test }
 TilemapEditorTest >> testTilemapNo [
 	| app |
 	app := self newApp.
@@ -257,6 +287,11 @@ TilemapEditorTest >> testTilemapSelector [
 ]
 
 { #category : #test }
+TilemapEditorTest >> testTilemapSelectorIndex [
+	self assert: self newApp class tilemapSelectorIndex equals: 2
+]
+
+{ #category : #test }
 TilemapEditorTest >> testTilemapVScrollbar [
 	| app |
 	app := self newApp.
@@ -266,12 +301,22 @@ TilemapEditorTest >> testTilemapVScrollbar [
 ]
 
 { #category : #test }
+TilemapEditorTest >> testTilemapVScrollbarIndex [
+	self assert: self newApp class tilemapVScrollbarIndex equals: 6
+]
+
+{ #category : #test }
 TilemapEditorTest >> testTilemapViewer [
 	| app |
 	app := self newApp.
 	self should: [ app tilemapViewer ] raise: Error.
 	app init.
 	self assert: (app tilemapViewer isKindOf: TilemapViewer)
+]
+
+{ #category : #test }
+TilemapEditorTest >> testTilemapViewerIndex [
+	self assert: self newApp class tilemapViewerIndex equals: 1
 ]
 
 { #category : #test }

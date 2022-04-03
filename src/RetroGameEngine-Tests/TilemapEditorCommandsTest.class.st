@@ -49,3 +49,38 @@ TilemapEditorCommandsTest >> testDefaultPosition [
 TilemapEditorCommandsTest >> testExtent [
 	self assert: self newObj extent isPoint
 ]
+
+{ #category : #test }
+TilemapEditorCommandsTest >> testLoadCommand [
+	self assert: self newObj class loadCommand equals: 2
+]
+
+{ #category : #test }
+TilemapEditorCommandsTest >> testLoadImageCommand [
+	self assert: self newObj class loadImageCommand equals: 7
+]
+
+{ #category : #test }
+TilemapEditorCommandsTest >> testLoadItemCommand [
+	self assert: self newObj class loadItemCommand equals: 5
+]
+
+{ #category : #test }
+TilemapEditorCommandsTest >> testNewCommand [
+	self assert: self newObj class newCommand equals: 1
+]
+
+{ #category : #test }
+TilemapEditorCommandsTest >> testNewItemCommand [
+	self assert: self newObj class newItemCommand equals: 4
+]
+
+{ #category : #test }
+TilemapEditorCommandsTest >> testSaveCommand [
+	self assert: self newObj class saveCommand equals: 3
+]
+
+{ #category : #test }
+TilemapEditorCommandsTest >> testSaveItemCommand [
+	self assert: self newObj class saveItemCommand equals: 6
+]
