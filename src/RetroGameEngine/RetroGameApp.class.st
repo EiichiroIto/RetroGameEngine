@@ -59,6 +59,11 @@ RetroGameApp class >> imageClassesAndSelectors [
 	^ list
 ]
 
+{ #category : #running }
+RetroGameApp class >> run [
+	SpRetroGamePlayer on: self new
+]
+
 { #category : #utilities }
 RetroGameApp class >> tilemapClassesAndSelectors [
 	| list |

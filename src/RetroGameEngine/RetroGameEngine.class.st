@@ -81,7 +81,7 @@ RetroGameEngine >> blt: aPoint imageNo: anInteger at: aPoint3 extent: aPoint4 tr
 RetroGameEngine >> blt: aPoint tilemap: aTileMap at: aPoint3 extent: aPoint4 transparentColor: anIntegerOrNil [
 	| tileMapPoint tileMapExtent image pos |
 	tileMapPoint := aPoint3 // 8.
-	tileMapExtent := (aPoint4 abs / 8) ceiling.
+	tileMapExtent := (aPoint4 abs / 8) ceiling + 1.
 	pos := aPoint3 \\ 8.
 	image := (self imageAt: aTileMap imageNo)
 		buildImageOfTilemap: aTileMap
