@@ -21,6 +21,9 @@ Metacello new
 
 ```
 SpRetroDemoPlayer example.
+ImageEditor run.
+TilemapEditor run.
+Danmaku run.
 ```
 
 Have fun!
