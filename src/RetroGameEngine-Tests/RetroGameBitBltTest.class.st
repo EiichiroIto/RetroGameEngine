@@ -189,6 +189,180 @@ RetroGameBitBltTest >> testCopyBits [
 ]
 
 { #category : #test }
+RetroGameBitBltTest >> testCopyBitsHReverse [
+	| bitBlt dest source |
+	bitBlt := self newBitBlt.
+	dest := Array new: 30 withAll: 0.
+	source := #(0 1 2 0 3 4 0 5 6).
+	bitBlt
+		destArray: dest;
+		destExtent: 5 @ 6;
+		destPoint: 1 @ 2;
+		sourceArray: source;
+		sourceExtent: 3 @ 3;
+		sourcePoint: 1 @ 0;
+		clipExtent: 2 @ 3;
+		copyBitsHReverse.
+	self
+		assertCollection: dest
+		equals: #(0 0 0 0 0 0 0 0 0 0 0 2 1 0 0 0 4 3 0 0 0 6 5 0 0 0 0 0 0 0).
+	bitBlt := self newBitBlt.
+	dest := Array new: 30 withAll: 0.
+	source := #(0 1 2 0 3 4 0 5 6).
+	bitBlt
+		destArray: dest;
+		destExtent: 5 @ 6;
+		destPoint: 1 @ 2;
+		sourceArray: source;
+		sourceExtent: 3 @ 3;
+		sourcePoint: 1 @ 0;
+		clipExtent: 2 @ 3;
+		transparentColor: 5;
+		copyBitsHReverse.
+	self
+		assertCollection: dest
+		equals: #(0 0 0 0 0 0 0 0 0 0 0 2 1 0 0 0 4 3 0 0 0 6 0 0 0 0 0 0 0 0)
+]
+
+{ #category : #test }
+RetroGameBitBltTest >> testCopyBitsHVReverse [
+	| bitBlt dest source |
+	bitBlt := self newBitBlt.
+	dest := Array new: 30 withAll: 0.
+	source := #(0 1 2 0 3 4 0 5 6).
+	bitBlt
+		destArray: dest;
+		destExtent: 5 @ 6;
+		destPoint: 1 @ 2;
+		sourceArray: source;
+		sourceExtent: 3 @ 3;
+		sourcePoint: 1 @ 0;
+		clipExtent: 2 @ 3;
+		copyBitsHVReverse.
+	self
+		assertCollection: dest
+		equals: #(0 0 0 0 0 0 0 0 0 0 0 6 5 0 0 0 4 3 0 0 0 2 1 0 0 0 0 0 0 0).
+	bitBlt := self newBitBlt.
+	dest := Array new: 30 withAll: 0.
+	source := #(0 1 2 0 3 4 0 5 6).
+	bitBlt
+		destArray: dest;
+		destExtent: 5 @ 6;
+		destPoint: 1 @ 2;
+		sourceArray: source;
+		sourceExtent: 3 @ 3;
+		sourcePoint: 1 @ 0;
+		clipExtent: 2 @ 3;
+		transparentColor: 5;
+		copyBitsHVReverse.
+	self
+		assertCollection: dest
+		equals: #(0 0 0 0 0 0 0 0 0 0 0 6 0 0 0 0 4 3 0 0 0 2 1 0 0 0 0 0 0 0)
+]
+
+{ #category : #test }
+RetroGameBitBltTest >> testCopyBitsNormal [
+	| bitBlt dest source |
+	bitBlt := self newBitBlt.
+	dest := Array new: 30 withAll: 0.
+	source := #(0 1 2 0 3 4 0 5 6).
+	bitBlt
+		destArray: dest;
+		destExtent: 5 @ 6;
+		destPoint: 1 @ 2;
+		sourceArray: source;
+		sourceExtent: 3 @ 3;
+		sourcePoint: 1 @ 0;
+		clipExtent: 2 @ 3;
+		transparentColor: 5;
+		copyBitsNormal.
+	self
+		assertCollection: dest
+		equals: #(0 0 0 0 0 0 0 0 0 0 0 1 2 0 0 0 3 4 0 0 0 5 6 0 0 0 0 0 0 0)
+]
+
+{ #category : #test }
+RetroGameBitBltTest >> testCopyBitsNormalWithMask [
+	| bitBlt dest source mask |
+	bitBlt := self newBitBlt.
+	dest := Array new: 30 withAll: 0.
+	mask := Array new: dest size withAll: true.
+	mask at: 18 put: false.
+	source := #(0 1 2 0 3 4 0 5 6).
+	bitBlt
+		destArray: dest;
+		destExtent: 5 @ 6;
+		destPoint: 1 @ 2;
+		sourceArray: source;
+		sourceExtent: 3 @ 3;
+		sourcePoint: 1 @ 0;
+		clipExtent: 2 @ 3;
+		destMask: mask;
+		transparentColor: 5;
+		copyBitsNormalWithMask.
+	self
+		assertCollection: dest
+		equals: #(0 0 0 0 0 0 0 0 0 0 0 1 2 0 0 0 3 0 0 0 0 0 6 0 0 0 0 0 0 0)
+]
+
+{ #category : #test }
+RetroGameBitBltTest >> testCopyBitsNormalWithTransparentColor [
+	| bitBlt dest source |
+	bitBlt := self newBitBlt.
+	dest := Array new: 30 withAll: 0.
+	source := #(0 1 2 0 3 4 0 5 6).
+	bitBlt
+		destArray: dest;
+		destExtent: 5 @ 6;
+		destPoint: 1 @ 2;
+		sourceArray: source;
+		sourceExtent: 3 @ 3;
+		sourcePoint: 1 @ 0;
+		clipExtent: 2 @ 3;
+		transparentColor: 5;
+		copyBitsNormalWithTransparentColor.
+	self
+		assertCollection: dest
+		equals: #(0 0 0 0 0 0 0 0 0 0 0 1 2 0 0 0 3 4 0 0 0 0 6 0 0 0 0 0 0 0)
+]
+
+{ #category : #test }
+RetroGameBitBltTest >> testCopyBitsVReverse [
+	| bitBlt dest source |
+	bitBlt := self newBitBlt.
+	dest := Array new: 30 withAll: 0.
+	source := #(0 1 2 0 3 4 0 5 6).
+	bitBlt
+		destArray: dest;
+		destExtent: 5 @ 6;
+		destPoint: 1 @ 2;
+		sourceArray: source;
+		sourceExtent: 3 @ 3;
+		sourcePoint: 1 @ 0;
+		clipExtent: 2 @ 3;
+		copyBitsVReverse.
+	self
+		assertCollection: dest
+		equals: #(0 0 0 0 0 0 0 0 0 0 0 5 6 0 0 0 3 4 0 0 0 1 2 0 0 0 0 0 0 0).
+	bitBlt := self newBitBlt.
+	dest := Array new: 30 withAll: 0.
+	source := #(0 1 2 0 3 4 0 5 6).
+	bitBlt
+		destArray: dest;
+		destExtent: 5 @ 6;
+		destPoint: 1 @ 2;
+		sourceArray: source;
+		sourceExtent: 3 @ 3;
+		sourcePoint: 1 @ 0;
+		clipExtent: 2 @ 3;
+		transparentColor: 5;
+		copyBitsVReverse.
+	self
+		assertCollection: dest
+		equals: #(0 0 0 0 0 0 0 0 0 0 0 0 6 0 0 0 3 4 0 0 0 1 2 0 0 0 0 0 0 0)
+]
+
+{ #category : #test }
 RetroGameBitBltTest >> testDestArray [
 	| bitBlt a |
 	bitBlt := self newBitBlt.
