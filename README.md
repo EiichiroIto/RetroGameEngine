@@ -33,5 +33,6 @@ Have fun!
 - Sound and music functions are not supported.
 
 ## ToDo
+- Support for Windows and Mac.
 - Support for Pharo 10.
 - Support for sound and music.
