@@ -10,8 +10,8 @@ Class {
 	#category : #'RetroGameEngine-DemoPlayer'
 }
 
-{ #category : #specs }
-SpRetroGamePlayer class >> defaultSpec [
+{ #category : #layout }
+SpRetroGamePlayer class >> defaultLayout [
 	^ SpBoxLayout newVertical
 		add: #playerPane;
 		yourself
@@ -19,11 +19,12 @@ SpRetroGamePlayer class >> defaultSpec [
 
 { #category : #'instance creation' }
 SpRetroGamePlayer class >> on: anApp [
+
 	| spec |
 	spec := self new
-		app: anApp;
-		openWithSpec;
-		init.
+		        app: anApp;
+		        open;
+		        init.
 	spec window
 		extent: anApp engine extent * 3 + 50;
 		title: anApp class title.

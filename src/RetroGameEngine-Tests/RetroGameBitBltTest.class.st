@@ -78,7 +78,7 @@ RetroGameBitBltTest >> testClipRange [
 RetroGameBitBltTest >> testCopyBits [
 	| bitBlt dest source |
 	bitBlt := self newBitBlt.
-	dest := #(0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0).
+	dest := #(0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0) copy.
 	source := #(0 1 2 0 3 4 0 5 6).
 	bitBlt
 		destArray: dest;
@@ -109,7 +109,7 @@ RetroGameBitBltTest >> testCopyBits [
 		assertCollection: dest
 		equals: #(0 0 0 0 0 0 0 0 0 0 0 1 2 0 0 0 3 4 0 0 0 5 6 0 0 0 0 0 0 0).
 	bitBlt := self newBitBlt.
-	dest := #(1 2 3 4).
+	dest := #(1 2 3 4) copy.
 	source := #(1 2 3 4 5 6 7 8 9).
 	bitBlt
 		destArray: dest;
@@ -122,7 +122,7 @@ RetroGameBitBltTest >> testCopyBits [
 		copyBits.
 	self assertCollection: dest equals: #(5 6 8 9).
 	bitBlt := self newBitBlt.
-	dest := #(1 2 3 4).
+	dest := #(1 2 3 4) copy.
 	source := #(1 2 3 4 5 6 7 8 9).
 	bitBlt
 		destArray: dest;
@@ -135,7 +135,7 @@ RetroGameBitBltTest >> testCopyBits [
 		copyBits.
 	self assertCollection: dest equals: #(1 2 4 5).
 	bitBlt := self newBitBlt.
-	dest := #(1 2 3 4).
+	dest := #(1 2 3 4) copy.
 	source := #(1 2 3 4 5 6 7 8 9).
 	bitBlt
 		destArray: dest;
@@ -148,7 +148,7 @@ RetroGameBitBltTest >> testCopyBits [
 		copyBits.
 	self assertCollection: dest equals: #(1 2 3 4).
 	bitBlt := self newBitBlt.
-	dest := #(1 2 3 4).
+	dest := #(1 2 3 4) copy.
 	source := #(1 2 3 4 5 6 7 8 9).
 	bitBlt
 		destArray: dest;
@@ -161,7 +161,7 @@ RetroGameBitBltTest >> testCopyBits [
 		copyBits.
 	self assertCollection: dest equals: #(1 2 3 4).
 	bitBlt := self newBitBlt.
-	dest := #(1 2 3 4).
+	dest := #(1 2 3 4) copy.
 	source := #(1 2 3 4 5 6 7 8 9).
 	bitBlt
 		destArray: dest;
@@ -174,7 +174,7 @@ RetroGameBitBltTest >> testCopyBits [
 		copyBits.
 	self assertCollection: dest equals: #(1 2 3 4).
 	bitBlt := self newBitBlt.
-	dest := #(1 2 3 4).
+	dest := #(1 2 3 4) copy.
 	source := #(1 2 3 4 5 6 7 8 9).
 	bitBlt
 		destArray: dest;
@@ -185,7 +185,7 @@ RetroGameBitBltTest >> testCopyBits [
 		sourcePoint: 0 @ 0;
 		clipExtent: 3 @ 3;
 		copyBits.
-	self assertCollection: dest equals: #(1 2 3 4)
+	self assertCollection: dest equals: #(9 2 3 4)
 ]
 
 { #category : #test }

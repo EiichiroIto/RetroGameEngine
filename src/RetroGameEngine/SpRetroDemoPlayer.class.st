@@ -13,8 +13,8 @@ Class {
 	#category : #'RetroGameEngine-DemoPlayer'
 }
 
-{ #category : #specs }
-SpRetroDemoPlayer class >> defaultSpec [
+{ #category : #layout }
+SpRetroDemoPlayer class >> defaultLayout [
 	^ SpBoxLayout newVertical
 		add: #menu withConstraints: [ :c | c height: self toolbarHeight ];
 		add: #playerPane;
@@ -29,9 +29,10 @@ SpRetroDemoPlayer class >> defaultSpec [
 
 { #category : #example }
 SpRetroDemoPlayer class >> example [
+
 	| spec |
 	spec := self new.
-	spec openWithSpec.
+	spec open.
 	spec window
 		extent: 600 @ 480;
 		title: 'RetroGame Demo Player'
