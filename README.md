@@ -8,7 +8,7 @@ https://github.com/kitao/pyxel
 The resources of the sample program are the original ones.
 
 ## Install repository on Pharo (for developer)
-Currently, it only supports Pharo 8. 
+It only supports Pharo 10.
 
 ```
 Metacello new
@@ -29,10 +29,8 @@ Danmaku run.
 Have fun!
 
 ## Limitations
-- Only compatible with Pharo 8.
 - Sound and music functions are not supported.
 
 ## ToDo
 - Support for Windows and Mac.
-- Support for Pharo 10.
 - Support for sound and music.
